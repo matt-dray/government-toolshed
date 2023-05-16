@@ -1,0 +1,20 @@
+// Fonts
+
+@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Text&display=swap');
+
+/*-- scss:defaults --*/
+
+// https://quarto.org/docs/presentations/revealjs/themes.html#sass-variables
+
+$headingFont: 'DM Serif Text', serif;
+$mainFont: 'DM Serif Text', serif;
+
+/*-- scss:defaults --*/
+
+$theme-wood: #BA8C63;
+$theme-hole: #382A1E;
+
+$body-color: $theme-hole;
+$link-color: $theme-hole;
+
+/*-- scss:rules --*/

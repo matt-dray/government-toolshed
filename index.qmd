@@ -1,17 +1,32 @@
 ---
-title: "Panic in the toolshed"
-subtitle: "Matt Dray, June 2023"
+title: "Panic! In the toolshed."
+author: "Matt Dray, June 2023"
+subtitle: "(Work in progress)"
 format:
   revealjs: 
-    theme: default
+    theme: [default, assets/styles/toolshed-style.scss]
+    menu: false
 title-slide-attributes:
-  data-background-image: img/pegboard.png
+  data-background-image: assets/images/pegboard-invert.png
   data-background-opacity: "0.1"
 ---
 
-##  tl;dr {.center data-background-image="img/pegboard.png" data-background-opacity=0.1}
+##  tl;dr {.center data-background-image="assets/images/pegboard.png" data-background-opacity=0.1}
 
-## {background-image="img/ashim-d-silva-Kw_zQBAChws-unsplash.jpg"}
+::: {.notes}
+:::
+
+# A cautionary tale {.center data-background-image="assets/images/pegboard-invert.png" data-background-opacity=0.1}
+
+:::{.notes}
+:::
+
+# A metaphor {.center data-background-image="assets/images/pegboard-invert.png" data-background-opacity=0.1}
+
+:::{.notes}
+:::
+
+## {background-image="assets/images/ashim-d-silva-Kw_zQBAChws-unsplash.jpg"}
 
 ::: footer
 <a href="https://unsplash.com/es/@randomlies?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Ashim D’Silva</a> on <a href="https://unsplash.com/photos/Kw_zQBAChws?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
@@ -20,7 +35,7 @@ title-slide-attributes:
 :::{.notes}
 :::
 
-## {background-image="img/cesar-carlevarino-aragon-NL_DF0Klepc-unsplash.jpg"}
+## {background-image="assets/images/cesar-carlevarino-aragon-NL_DF0Klepc-unsplash.jpg"}
 
 ::: footer
 <a href="https://unsplash.com/@carlevarino?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Cesar Carlevarino Aragon</a> on <a href="https://unsplash.com/photos/NL_DF0Klepc?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
@@ -29,7 +44,7 @@ title-slide-attributes:
 :::{.notes}
 :::
 
-## 1. Advertise {.center data-background-image="img/pegboard.png" data-background-opacity=0.1}
+## 1. Advertise {.center data-background-image="assets/images/pegboard.png" data-background-opacity=0.1}
 
 * Show it off
 * Answer questions
@@ -38,19 +53,25 @@ title-slide-attributes:
 :::{.notes}
 :::
 
-## 2. Sustainabilise {.center data-background-image="img/pegboard.png" data-background-opacity=0.1}
+## 2. Think sustainably {.center data-background-image="assets/images/pegboard.png" data-background-opacity=0.1}
 
-* Modular
-* Document
+* Build modular things
+* Write good documentation
+* Plan for your loss
 
 ::: {.notes}
 :::
 
-## 3. Centralise {.center data-background-image="img/pegboard.png" data-background-opacity=0.1}
+## 3. Centralise {.center data-background-image="assets/images/pegboard.png" data-background-opacity=0.1}
 
 * Build the toolshed
-* Gather new tools
+* Gather tools
 * Maintain the toolshed
+
+::: {.notes}
+:::
+
+##  tl;dr {.center data-background-image="assets/images/pegboard.png" data-background-opacity=0.1}
 
 ::: {.notes}
 :::

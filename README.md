@@ -1,3 +1,5 @@
 # government-toolshed
 
-Work-in-progress slides for the Cross-Government Data Science Community of Interest Meetup, 'The Data Science Toolshed', 2023-06-13.
+My work-in-progress slides, 'Panic! In the toolshed.', for the [the Cross-Government Data Science Community of Interest Meetup in June 2023](https://www.eventbrite.com/e/government-data-science-community-meet-up-the-data-science-toolshed-tickets-578774920367).
+
+The slides are [available on the internet](https://matt-dray.github.io/government-toolshed/).

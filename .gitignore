@@ -50,3 +50,5 @@ rsconnect/
 
 # macOS file
 .DS_Store
+
+/.quarto/
