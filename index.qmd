@@ -9,39 +9,46 @@ format:
 title-slide-attributes:
   data-background-image: assets/images/pegboard-invert.png
   data-background-opacity: "0.1"
-  data-notes: "A personal perspective."
+  data-notes: |
+    * I'm here to talk about making and sharing tools.  
+    * I work at UKHSA, but this is a personal perspective.
+    * In these 15 mins I'll reflect on my failures and plead desperately for help.
+    * Thank you for agreeing to come to my therapy session.
 ---
 
 ## tl;dr {.center data-background-image="assets/images/pegboard.png" data-background-opacity=0.1}
 
-1. Make modular, shareable tools
-2. Talk about them
-3. Set them free
+1. Do less
+2. Iterate, then iterate again
+2. Make things open, it makes things better
 
 ::: notes
+* 'Too long didn't read'.
+* The three main takeaways are stolen from [the Government Design Principles](https://www.gov.uk/guidance/government-design-principles).
+* 'If we’ve found a way of doing something that works, we should make it reusable and shareable instead of reinventing the wheel every time.'
+* 'The best way to build good <s>services</s> tools is to start small and iterate wildly.'
+* 'Share code, share designs, share ideas, share intentions, share failures.'
 :::
 
 # A cautionary tale {.center data-background-image="assets/images/pegboard-invert.png" data-background-opacity=0.1}
 
 ::: notes
+* I think I'm here to share some wisdom.
+* The best example I have is an R package I wrote that has mass appeal.
+* I want to tell you what worked and what I regret.
 :::
 
-## Challenge {.center data-background-image="assets/images/pegboard.png" data-background-opacity=0.1}
+## Thought process (circa 2021) {.center data-background-image="assets/images/pegboard.png" data-background-opacity=0.1}
 
-1. There's new spreadsheet guidance
-1. We need to redesign our spreadsheets
-1. There are lots of them
-
-::: notes
-:::
-
-## Solution {.center data-background-image="assets/images/pegboard.png" data-background-opacity=0.1}
-
-1. It'll be easier if I write an R package
-1. Has anyone done this already?
-1. I'll get it in the open
+1. There's new [spreadsheet guidance](https://analysisfunction.civilservice.gov.uk/policy-store/releasing-statistics-in-spreadsheets/)
+1. Might as well write some functions
+1. Other people are probably doing this
 
 ::: notes
+* Context: the [Government Analysis Function](https://analysisfunction.civilservice.gov.uk/) created [new (and very good) guidance](https://analysisfunction.civilservice.gov.uk/policy-store/releasing-statistics-in-spreadsheets/) for releasing statistics in spreadsheets.
+* None of the spreadsheets in my team were compliant. Colours, blank columns, multiple headers. Classic non-accessible stuff. Also the whole process was point-and-click before I joined.
+* Given multiple files staggered across releases, it made sense to create some reusable R functions to apply the new guidance consistently, which in turn meant it was worth while to create a package.
+* Att the time, there was the Python package 'gptables', but it hadn't yet been updated for the new guidance (it has been now) and there was no native R solution.
 :::
 
 ## {.center .center data-background-image="assets/images/pegboard.png" data-background-opacity=0.1}
@@ -49,21 +56,23 @@ title-slide-attributes:
 ![](assets/images/website-a11ytables.png){alt='A screenshot of the documentation website for the R package called a11ytables. It has several sections of information about the purpose of the package, the license, the authors, and more.'}
 
 ::: notes
+* And so the {a11ytables} package was created. Entirely for our own use at first, but I got the feeling it would have other interested parties.
+* What does it do? You give it your tables of data, along with some metadata like worksheet titles, and it automatically creates an xlsx spreadsheet that is (mostly!) compliant with the guidance.
 :::
 
-## Success {.center data-background-image="assets/images/pegboard.png" data-background-opacity=0.1}
+## Success! {.center data-background-image="assets/images/pegboard.png" data-background-opacity=0.1}
 
-* Is being used across government
-* Was well advertised
-* Has decent documentation
+* It did what I wanted it to do
+* I did some (non-spammy?) promotion
+* It's in use across government
 
 ::: notes
-* I was already building this tool for my team, but recognised a wider need given the Analysis Function's updated spreadsheets guidance and a lack of native R support.
-* Spoke about it internally (i.e. at an NHS-R webinar, at a GSS Champions quarterly meeting, to a Scottish Government R conference) and externally (i.e. a talk at EARL conference 2022, blog posts, social media). It's referenced now from the Analysis Function spreadshset guidance.
+* I used it to successfully create the spreadsheets we needed to release. The lowest bar!
+* I spoke to some targeted groups that might find it useful: bot internally (i.e. at an NHS-R webinar, at a GSS Champions quarterly meeting, to a Scottish Government R conference) and externally (i.e. a talk at EARL conference 2022, blog posts, social media). It's referenced now from the Analysis Function [spreadsheet guidance](https://analysisfunction.civilservice.gov.uk/policy-store/further-resources-for-releasing-statistics-in-spreadsheets/).
 * It's not perfect, but the package is now in use across a number of organisations.
 :::
 
-## Uhoh {.center data-background-image="assets/images/pegboard.png" data-background-opacity=0.1}
+## Uhoh... {.center data-background-image="assets/images/pegboard.png" data-background-opacity=0.1}
 
 * The (only) maintainer left the org!
 * Should {a11ytables2} exist?
@@ -117,6 +126,8 @@ title-slide-attributes:
 :::
 
 ::: notes
+* Current state: we know there are tools in use across government that others might be able to use or contribute to, but they're not organised.
+* Maybe some are honed instruments, like the Swiss Army knife; maybe some are mor rugged, like this tomahawk; maybe some are overcomplicated, like this knife that has a picture of a knife on it.
 :::
 
 ## {background-image="assets/images/cesar-carlevarino-aragon-NL_DF0Klepc-unsplash.jpg"}
@@ -126,13 +137,25 @@ title-slide-attributes:
 :::
 
 ::: notes
+* Future state?
+* What if we could organise and arrange these tools so everyone can more easily find and use them?
+* Fittingly, we have some empty spots to be filled in this image and also some tools that fill a spot, but don't quit fit the spot. Room to develop!
 :::
 
 ## tl;dr {.center data-background-image="assets/images/pegboard.png" data-background-opacity=0.1}
 
-1. Make modular, shareable tools
-2. Talk about them
-3. Set them free
+1. Do less
+2. Iterate, then iterate again
+2. Make things open, it makes things better
 
 ::: notes
+* The 'too long didn't read' summary once more, as stolen from [the Government Design Principles](https://www.gov.uk/guidance/government-design-principles).
+* 'If we’ve found a way of doing something that works, we should make it reusable and shareable instead of reinventing the wheel every time.'
+* 'The best way to build good <s>services</s> tools is to start small and iterate wildly.'
+* 'Share code, share designs, share ideas, share intentions, share failures.'
 :::
+
+## Links for nerds {.center data-background-image="assets/images/pegboard.png" data-background-opacity=0.1}
+
+* {a11ytables} R package ([GitHub](https://github.com/co-analysis/a11ytables), [site](https://co-analysis.github.io/a11ytables/)), [spreadsheet guidance]()
+* [Slides](https://matt-dray.github.io/earl22-presentation/#/title-slide) and [blog](https://www.rostrum.blog/2022/09/07/earl22/) for EARL 2022 ([video](https://videos.ctfassets.net/k26sw1bgepr3/6QYherR2skslFhYvbWWuYR/d5f0cda59597cb1bfa0d163662ce5a01/Stream_1_Matt_Dray.mp4)), Scottish Government and NHS-R ([video](https://www.youtube.com/watch?v=VcEZBYDBJwo))
