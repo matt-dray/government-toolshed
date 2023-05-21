@@ -1,11 +1,12 @@
 ---
-title: "Panic! In The Toolshed"
+title: "Panic!<br>In The Toolshed"
 subtitle: "(Work in progress)"
 author: "Matt Dray, June 2023"
 format:
   revealjs: 
     theme: [default, assets/styles/toolshed-style.scss]
     menu: true
+    code-line-numbers: true
 title-slide-attributes:
   data-background-image: assets/images/pegboard-invert.png
   data-background-opacity: "0.1"
@@ -38,7 +39,7 @@ title-slide-attributes:
 * I want to tell you what worked and what I regret.
 :::
 
-## Thought process (circa 2021) {.center data-background-image="assets/images/pegboard.png" data-background-opacity=0.1}
+## Thought process (2021) {.center data-background-image="assets/images/pegboard.png" data-background-opacity=0.1}
 
 1. There's new [spreadsheet guidance](https://analysisfunction.civilservice.gov.uk/policy-store/releasing-statistics-in-spreadsheets/)
 1. Might as well write some functions
@@ -60,16 +61,38 @@ title-slide-attributes:
 * What does it do? You give it your tables of data, along with some metadata like worksheet titles, and it automatically creates an xlsx spreadsheet that is (mostly!) compliant with the guidance.
 :::
 
+# {.center data-background-image="assets/images/pegboard.png" data-background-opacity=0.1}
+
+```{r}
+#| eval = FALSE,
+#| echo = TRUE
+remotes::install_github("co-analysis/a11ytables")
+
+a11ytables::create_a11ytable(
+  tab_titles,
+  sheet_types,
+  sheet_titles,
+  blank_cells,
+  sources,
+  tables
+) |>
+  a11ytables::generate_workbook() |>
+  openxlsx::saveWorkbook()
+```
+
+::: notes
+:::
+
 ## Success! {.center data-background-image="assets/images/pegboard.png" data-background-opacity=0.1}
 
 * It did what I wanted it to do
-* I did some (non-spammy?) promotion
+* I told people about it
 * It's in use across government
 
 ::: notes
 * I used it to successfully create the spreadsheets we needed to release. The lowest bar!
 * I spoke to some targeted groups that might find it useful: bot internally (i.e. at an NHS-R webinar, at a GSS Champions quarterly meeting, to a Scottish Government R conference) and externally (i.e. a talk at EARL conference 2022, blog posts, social media). It's referenced now from the Analysis Function [spreadsheet guidance](https://analysisfunction.civilservice.gov.uk/policy-store/further-resources-for-releasing-statistics-in-spreadsheets/).
-* It's not perfect, but the package is now in use across a number of organisations.
+* It's not perfect, but the package is now in use across a number of organisations (Co, MoJ, ONS, DfT, Scot Gov, etc)
 :::
 
 ## Uhoh... {.center data-background-image="assets/images/pegboard.png" data-background-opacity=0.1}
@@ -79,13 +102,16 @@ title-slide-attributes:
 * Where should these things live?
 
 ::: notes
+* This section was about me sharing my wisdom, but actully I'd like you to share yours.
 * Maybe the {a11ytables} package could change GitHub organisation? Need to think about licensing, broken URLs, burden on new owner.
 * Could ask Cabinet Office to archive the original {a11ytables} and clearly signpost this in the README, then communicate widely about the new package and target known users.
 * Another example is the {fingertipsR} package, which was removed from CRAN. URLs have broken, search engines show the 'removed from CRAN' page high in the rankings.
 :::
 
-
 # A resolution {.center data-background-image="assets/images/pegboard-invert.png" data-background-opacity=0.1}
+
+::: notes
+:::
 
 ## 1. Think sustainably {.center data-background-image="assets/images/pegboard.png" data-background-opacity=0.1}
 
@@ -127,7 +153,10 @@ title-slide-attributes:
 
 ::: notes
 * Current state: we know there are tools in use across government that others might be able to use or contribute to, but they're not organised.
-* Maybe some are honed instruments, like the Swiss Army knife; maybe some are mor rugged, like this tomahawk; maybe some are overcomplicated, like this knife that has a picture of a knife on it.
+* Maybe some are multifaceted instruments, like the Swiss Army knife; maybe some are more blunt, like this tomahawk; maybe some are overcomplicated, like this knife that has a picture of a... knife... on it.
+* Is a nail an instrument? Maybe it needs a hammer. Where can I find one?
+* Yo, this is a _metaphor_.
+
 :::
 
 ## {background-image="assets/images/cesar-carlevarino-aragon-NL_DF0Klepc-unsplash.jpg"}

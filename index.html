@@ -28,6 +28,70 @@
       margin: 0 0.8em 0.2em -1.6em;
       vertical-align: middle;
     }
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      { color: #003b4f; background-color: #f1f3f5; }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span { color: #003b4f; } /* Normal */
+    code span.al { color: #ad0000; } /* Alert */
+    code span.an { color: #5e5e5e; } /* Annotation */
+    code span.at { color: #657422; } /* Attribute */
+    code span.bn { color: #ad0000; } /* BaseN */
+    code span.bu { } /* BuiltIn */
+    code span.cf { color: #003b4f; } /* ControlFlow */
+    code span.ch { color: #20794d; } /* Char */
+    code span.cn { color: #8f5902; } /* Constant */
+    code span.co { color: #5e5e5e; } /* Comment */
+    code span.cv { color: #5e5e5e; font-style: italic; } /* CommentVar */
+    code span.do { color: #5e5e5e; font-style: italic; } /* Documentation */
+    code span.dt { color: #ad0000; } /* DataType */
+    code span.dv { color: #ad0000; } /* DecVal */
+    code span.er { color: #ad0000; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #ad0000; } /* Float */
+    code span.fu { color: #4758ab; } /* Function */
+    code span.im { color: #00769e; } /* Import */
+    code span.in { color: #5e5e5e; } /* Information */
+    code span.kw { color: #003b4f; } /* Keyword */
+    code span.op { color: #5e5e5e; } /* Operator */
+    code span.ot { color: #003b4f; } /* Other */
+    code span.pp { color: #ad0000; } /* Preprocessor */
+    code span.sc { color: #5e5e5e; } /* SpecialChar */
+    code span.ss { color: #20794d; } /* SpecialString */
+    code span.st { color: #20794d; } /* String */
+    code span.va { color: #111111; } /* Variable */
+    code span.vs { color: #20794d; } /* VerbatimString */
+    code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   </style>
   <link rel="stylesheet" href="index_files/libs/revealjs/dist/theme/quarto.css" id="theme">
   <link href="index_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
@@ -329,7 +393,7 @@
 <li>In these 15 mins I’ll reflect on my failures and plead desperately for help.</li>
 <li>Thank you for agreeing to come to my therapy session.</li>
 </ul>" class="quarto-title-block center">
-  <h1 class="title">Panic! In The Toolshed</h1>
+  <h1 class="title">Panic!<br>In The Toolshed</h1>
   <p class="subtitle">(Work in progress)</p>
 
 <div class="quarto-title-authors">
@@ -389,8 +453,8 @@ Matt Dray, June 2023
           display:block!important;
       }</style></aside>
 </section>
-<section id="thought-process-circa-2021" class="slide level2 center" data-background-image="assets/images/pegboard.png" data-background-opacity="0.1">
-<h2>Thought process (circa 2021)</h2>
+<section id="thought-process-2021" class="slide level2 center" data-background-image="assets/images/pegboard.png" data-background-opacity="0.1">
+<h2>Thought process (2021)</h2>
 <ol type="1">
 <li>There’s new <a href="https://analysisfunction.civilservice.gov.uk/policy-store/releasing-statistics-in-spreadsheets/">spreadsheet guidance</a></li>
 <li>Might as well write some functions</li>
@@ -434,19 +498,50 @@ Matt Dray, June 2023
           overflow: hidden!important;
           display:block!important;
       }</style></aside>
+</section></section>
+<section>
+<section id="section-1" class="title-slide slide level1 center" data-background-image="assets/images/pegboard.png" data-background-opacity="0.1">
+<h1></h1>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a>remotes<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">"co-analysis/a11ytables"</span>)</span>
+<span id="cb1-2"><a href="#cb1-2"></a></span>
+<span id="cb1-3"><a href="#cb1-3"></a>a11ytables<span class="sc">::</span><span class="fu">create_a11ytable</span>(</span>
+<span id="cb1-4"><a href="#cb1-4"></a>  tab_titles,</span>
+<span id="cb1-5"><a href="#cb1-5"></a>  sheet_types,</span>
+<span id="cb1-6"><a href="#cb1-6"></a>  sheet_titles,</span>
+<span id="cb1-7"><a href="#cb1-7"></a>  blank_cells,</span>
+<span id="cb1-8"><a href="#cb1-8"></a>  sources,</span>
+<span id="cb1-9"><a href="#cb1-9"></a>  tables</span>
+<span id="cb1-10"><a href="#cb1-10"></a>) <span class="sc">|&gt;</span></span>
+<span id="cb1-11"><a href="#cb1-11"></a>  a11ytables<span class="sc">::</span><span class="fu">generate_workbook</span>() <span class="sc">|&gt;</span></span>
+<span id="cb1-12"><a href="#cb1-12"></a>  openxlsx<span class="sc">::</span><span class="fu">saveWorkbook</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<aside class="notes">
+
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
 </section>
 <section id="success" class="slide level2 center" data-background-image="assets/images/pegboard.png" data-background-opacity="0.1">
 <h2>Success!</h2>
 <ul>
 <li>It did what I wanted it to do</li>
-<li>I did some (non-spammy?) promotion</li>
+<li>I told people about it</li>
 <li>It’s in use across government</li>
 </ul>
 <aside class="notes">
 <ul>
 <li>I used it to successfully create the spreadsheets we needed to release. The lowest bar!</li>
 <li>I spoke to some targeted groups that might find it useful: bot internally (i.e.&nbsp;at an NHS-R webinar, at a GSS Champions quarterly meeting, to a Scottish Government R conference) and externally (i.e.&nbsp;a talk at EARL conference 2022, blog posts, social media). It’s referenced now from the Analysis Function <a href="https://analysisfunction.civilservice.gov.uk/policy-store/further-resources-for-releasing-statistics-in-spreadsheets/">spreadsheet guidance</a>.</li>
-<li>It’s not perfect, but the package is now in use across a number of organisations.</li>
+<li>It’s not perfect, but the package is now in use across a number of organisations (Co, MoJ, ONS, DfT, Scot Gov, etc)</li>
 </ul>
 <style type="text/css">
         span.MJX_Assistive_MathML {
@@ -469,6 +564,7 @@ Matt Dray, June 2023
 </ul>
 <aside class="notes">
 <ul>
+<li>This section was about me sharing my wisdom, but actully I’d like you to share yours.</li>
 <li>Maybe the {a11ytables} package could change GitHub organisation? Need to think about licensing, broken URLs, burden on new owner.</li>
 <li>Could ask Cabinet Office to archive the original {a11ytables} and clearly signpost this in the README, then communicate widely about the new package and target known users.</li>
 <li>Another example is the {fingertipsR} package, which was removed from CRAN. URLs have broken, search engines show the ‘removed from CRAN’ page high in the rankings.</li>
@@ -488,7 +584,19 @@ Matt Dray, June 2023
 <section>
 <section id="a-resolution" class="title-slide slide level1 center" data-background-image="assets/images/pegboard-invert.png" data-background-opacity="0.1">
 <h1>A resolution</h1>
+<aside class="notes">
 
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
 </section>
 <section id="think-sustainably" class="slide level2 center" data-background-image="assets/images/pegboard.png" data-background-opacity="0.1">
 <h2>1. Think sustainably</h2>
@@ -570,7 +678,7 @@ Matt Dray, June 2023
           display:block!important;
       }</style></aside>
 </section>
-<section id="section-1" class="slide level2" data-background-image="assets/images/ashim-d-silva-Kw_zQBAChws-unsplash.jpg">
+<section id="section-2" class="slide level2" data-background-image="assets/images/ashim-d-silva-Kw_zQBAChws-unsplash.jpg">
 <h2></h2>
 <div class="footer">
 <p><a href="https://unsplash.com/es/@randomlies?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Ashim D’Silva</a> on <a href="https://unsplash.com/photos/Kw_zQBAChws?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Unsplash</a></p>
@@ -578,7 +686,9 @@ Matt Dray, June 2023
 <aside class="notes">
 <ul>
 <li>Current state: we know there are tools in use across government that others might be able to use or contribute to, but they’re not organised.</li>
-<li>Maybe some are honed instruments, like the Swiss Army knife; maybe some are mor rugged, like this tomahawk; maybe some are overcomplicated, like this knife that has a picture of a knife on it.</li>
+<li>Maybe some are multifaceted instruments, like the Swiss Army knife; maybe some are more blunt, like this tomahawk; maybe some are overcomplicated, like this knife that has a picture of a… knife… on it.</li>
+<li>Is a nail an instrument? Maybe it needs a hammer. Where can I find one?</li>
+<li>Yo, this is a <em>metaphor</em>.</li>
 </ul>
 <style type="text/css">
         span.MJX_Assistive_MathML {
@@ -592,7 +702,7 @@ Matt Dray, June 2023
           display:block!important;
       }</style></aside>
 </section>
-<section id="section-2" class="slide level2" data-background-image="assets/images/cesar-carlevarino-aragon-NL_DF0Klepc-unsplash.jpg">
+<section id="section-3" class="slide level2" data-background-image="assets/images/cesar-carlevarino-aragon-NL_DF0Klepc-unsplash.jpg">
 <h2></h2>
 <div class="footer">
 <p><a href="https://unsplash.com/@carlevarino?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Cesar Carlevarino Aragon</a> on <a href="https://unsplash.com/photos/NL_DF0Klepc?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Unsplash</a></p>
@@ -862,6 +972,44 @@ Matt Dray, June 2023
         ]
       });
     </script>
+    
+    <script>
+      // htmlwidgets need to know to resize themselves when slides are shown/hidden.
+      // Fire the "slideenter" event (handled by htmlwidgets.js) when the current
+      // slide changes (different for each slide format).
+      (function () {
+        // dispatch for htmlwidgets
+        function fireSlideEnter() {
+          const event = window.document.createEvent("Event");
+          event.initEvent("slideenter", true, true);
+          window.document.dispatchEvent(event);
+        }
+
+        function fireSlideChanged(previousSlide, currentSlide) {
+          fireSlideEnter();
+
+          // dispatch for shiny
+          if (window.jQuery) {
+            if (previousSlide) {
+              window.jQuery(previousSlide).trigger("hidden");
+            }
+            if (currentSlide) {
+              window.jQuery(currentSlide).trigger("shown");
+            }
+          }
+        }
+
+        // hookup for slidy
+        if (window.w3c_slidy) {
+          window.w3c_slidy.add_observer(function (slide_num) {
+            // slide_num starts at position 1
+            fireSlideChanged(null, w3c_slidy.slides[slide_num - 1]);
+          });
+        }
+
+      })();
+    </script>
+
     <script id="quarto-html-after-body" type="application/javascript">
     window.document.addEventListener("DOMContentLoaded", function (event) {
       const toggleBodyColorMode = (bsSheetEl) => {
