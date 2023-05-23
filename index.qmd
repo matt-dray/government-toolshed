@@ -13,30 +13,29 @@ title-slide-attributes:
   data-notes: |
     * I'm here to talk about making and sharing tools.  
     * I work at UKHSA, but this is a personal perspective.
-    * In these 15 mins I'll reflect on my failures and plead desperately for help.
+    * In these 15 mins I'll reflect on my successes and failures and plead desperately for help.
     * Thank you for agreeing to come to my therapy session.
 ---
 
 ## tl;dr {.center data-background-image="assets/images/pegboard.png" data-background-opacity=0.1}
 
-1. Do less
-2. Iterate, then iterate again
-2. Make things open, it makes things better
+1. Think sustainably
+1. Advertise
+1. Centralise
 
 ::: notes
-* 'Too long didn't read'.
-* The three main takeaways are stolen from [the Government Design Principles](https://www.gov.uk/guidance/government-design-principles).
-* 'If we’ve found a way of doing something that works, we should make it reusable and shareable instead of reinventing the wheel every time.'
-* 'The best way to build good <s>services</s> tools is to start small and iterate wildly.'
-* 'Share code, share designs, share ideas, share intentions, share failures.'
+* 'tl;dr' is 'too long didn't read'.
+* Design your tools so that it's not a problem if you disappear.
+* Tell people about the project to help uncover duplication and get them involved.
+* Store all aspects of the project (code, documentation) in an obvious, open place that others can contribute to.
 :::
 
-# A cautionary tale {.center data-background-image="assets/images/pegboard-invert.png" data-background-opacity=0.1}
+# An experience {.center data-background-image="assets/images/pegboard-invert.png" data-background-opacity=0.1}
 
 ::: notes
-* I think I'm here to share some wisdom.
-* The best example I have is an R package I wrote that has mass appeal.
-* I want to tell you what worked and what I regret.
+* It's easy to hand out platitudes and tell you what to do. Especially because you probably know you should do these things anyway.
+* So for credibility I'll give you an example of a tool I created.
+* But nothing is ever easy, so I'll tell you about its complications too.
 :::
 
 ## Thought process (2021) {.center data-background-image="assets/images/pegboard.png" data-background-opacity=0.1}
@@ -46,19 +45,24 @@ title-slide-attributes:
 1. Other people are probably doing this
 
 ::: notes
-* Context: the [Government Analysis Function](https://analysisfunction.civilservice.gov.uk/) created [new (and very good) guidance](https://analysisfunction.civilservice.gov.uk/policy-store/releasing-statistics-in-spreadsheets/) for releasing statistics in spreadsheets.
-* None of the spreadsheets in my team were compliant. Colours, blank columns, multiple headers. Classic non-accessible stuff. Also the whole process was point-and-click before I joined.
-* Given multiple files staggered across releases, it made sense to create some reusable R functions to apply the new guidance consistently, which in turn meant it was worth while to create a package.
-* Att the time, there was the Python package 'gptables', but it hadn't yet been updated for the new guidance (it has been now) and there was no native R solution.
+* Let me take you back to the heady days of 2021.
+* The [Government Analysis Function](https://analysisfunction.civilservice.gov.uk/) created [new (and very good) guidance](https://analysisfunction.civilservice.gov.uk/policy-store/releasing-statistics-in-spreadsheets/) for releasing statistics in spreadsheets.
+* None of the spreadsheets in my team were compliant. Colours, blank columns, multiple headers, footnotes hidden under tables. Classic non-accessible stuff. 
+* Also the production process was point-and-click before I joined.
+* Given multiple files staggered across releases, it made sense to start with some reusable R functions to apply the new guidance consistently, which later meant it was worthwhile to create a package.
+* At the time, there was the Python package 'gptables', but it hadn't yet been updated for the new guidance (it has been now) and there was no native R solution.
 :::
 
-## {.center .center data-background-image="assets/images/pegboard.png" data-background-opacity=0.1}
+## {.center-h data-background-image="assets/images/pegboard.png" data-background-opacity=0.1}
 
 ![](assets/images/website-a11ytables.png){alt='A screenshot of the documentation website for the R package called a11ytables. It has several sections of information about the purpose of the package, the license, the authors, and more.'}
 
+[co-analysis.github.io/a11ytables](https://co-analysis.github.io/a11ytables)
+
 ::: notes
 * And so the {a11ytables} package was created. Entirely for our own use at first, but I got the feeling it would have other interested parties.
-* What does it do? You give it your tables of data, along with some metadata like worksheet titles, and it automatically creates an xlsx spreadsheet that is (mostly!) compliant with the guidance.
+* What does it do? You give it your tables of data, along with some metadata like worksheet titles, and it automatically creates an xlsx spreadsheet that is (mostly!) compliant with the guidance. It does the hard work for you, basically.
+* This screenshot is the documentation homepage.
 :::
 
 # {.center data-background-image="assets/images/pegboard.png" data-background-opacity=0.1}
@@ -81,6 +85,9 @@ a11ytables::create_a11ytable(
 ```
 
 ::: notes
+* The code is openly available on GitHub, so people can freely download it, ask questions, or contribute code.
+* Users see only two functions, basically: one to organise the data into a dataframe and a second one to apply the structure and style of a best-practice spreadsheet.
+* 
 :::
 
 ## Success! {.center data-background-image="assets/images/pegboard.png" data-background-opacity=0.1}
@@ -95,22 +102,23 @@ a11ytables::create_a11ytable(
 * It's not perfect, but the package is now in use across a number of organisations (Co, MoJ, ONS, DfT, Scot Gov, etc)
 :::
 
-## Uhoh... {.center data-background-image="assets/images/pegboard.png" data-background-opacity=0.1}
+## Panic! {.center data-background-image="assets/images/pegboard.png" data-background-opacity=0.1}
 
 * The (only) maintainer left the org!
 * Should {a11ytables2} exist?
 * Where should these things live?
 
 ::: notes
-* This section was about me sharing my wisdom, but actully I'd like you to share yours.
-* Maybe the {a11ytables} package could change GitHub organisation? Need to think about licensing, broken URLs, burden on new owner.
-* Could ask Cabinet Office to archive the original {a11ytables} and clearly signpost this in the README, then communicate widely about the new package and target known users.
-* Another example is the {fingertipsR} package, which was removed from CRAN. URLs have broken, search engines show the 'removed from CRAN' page high in the rankings.
+* Despite some success, there are some complications.
+* I wrote the package in a department that I've now left. My access to the GitHub repo is diminished. How does this impact things?
+* {a11ytables} is based on the {openxlsx} package. An {openxlsx2} package is maturing and has better support for a number of features, like automatic font colouring, and should make for more readable code on the backend. So should {a11ytables} be updated? Or is this the chance to make an '{a11ytables2}'?
+* This raises a wider question of where this kind of tool should live. It was developed in one particular department on their time, so it 'belongs' to them. But now it's stuck in a liminal space. Need to think about licensing, broken URLs, burden on new owner, etc.
 :::
 
-# A resolution {.center data-background-image="assets/images/pegboard-invert.png" data-background-opacity=0.1}
+# Reflection {.center data-background-image="assets/images/pegboard-invert.png" data-background-opacity=0.1}
 
 ::: notes
+* I think the experience boils down to three things: think sustainably, advertise and centralise.
 :::
 
 ## 1. Think sustainably {.center data-background-image="assets/images/pegboard.png" data-background-opacity=0.1}
@@ -120,24 +128,65 @@ a11ytables::create_a11ytable(
 * Plan for your loss
 
 ::: {.notes}
+* Start small and simple, then build up. 
+* Make it easy for you and others to understand the code.
+* All of this will make it easier if you leave the project.
 :::
 
 ## 2. Advertise {.center data-background-image="assets/images/pegboard.png" data-background-opacity=0.1}
 
-* You need momentum
 * Show it off
-* Answer questions, encourage collaborators
+* Expose duplication early
+* Build a community
 
 ::: notes
+* How can anyone find your project? Talk about it in internal networks, at Coffee & Coding, etc. Expand out to external events even if you don't think there are users there; try Slack, or these Data Science meetups, or even external events. You could inspire someone else.
+* The sooner you start talking about it, the sooner you'll find out if it already exists.
+* Encourage questions and collaborators to help improve the thing.
+* This is not about 'marketing', 'clout', or impressing people. It's about making people's lives easier.
+* The smart ones among you will realise that this is pretty meta: I'm advertising while I tell you to advertise.
 :::
 
 ## 3. Centralise {.center data-background-image="assets/images/pegboard.png" data-background-opacity=0.1}
 
 * Work together, avoid duplication
-* Encourage institutional ownership
+* Encourage community ownership
 * Build a toolshed, they will come?
 
 ::: {.notes}
+* Bring together your code in one place; ideally into a package structure if it makes sense. Get it off your local drive and made available to your team, to your org, to the government and beyond.
+* Tools created on government time belong to the taxpayer.
+:::
+
+# It's not just me {.center data-background-image="assets/images/pegboard-invert.png" data-background-opacity=0.1}
+
+::: notes
+* Turns out that there are principles that relate to these ideas already; they just aren't spelled out in a way that's aimed directly at creators of analytical tools like we're talking about today.
+:::
+
+## [Gov Design Principles](https://www.gov.uk/guidance/government-design-principles) {.center data-background-image="assets/images/pegboard.png" data-background-opacity=0.1}
+
+* Do less<br>
+* Iterate, then iterate again<br>
+* Make things open, it makes things better
+
+::: notes
+* These three points from [the Government Design Principles](https://www.gov.uk/guidance/government-design-principles) are helpful in the context of writing tools as well.
+* Principle 2: 'If we’ve found a way of doing something that works, we should make it reusable and shareable instead of reinventing the wheel every time.'
+* Principle 5: 'The best way to build good <s>services</s> tools is to start small and iterate wildly.'
+* Principle 10: 'Share code, share designs, share ideas, share intentions, share failures.'
+:::
+
+## [Tech Code of Practice](https://www.gov.uk/guidance/the-technology-code-of-practice) {.center data-background-image="assets/images/pegboard.png" data-background-opacity=0.1}
+
+* Be open and use open source<br>
+* Share, reuse and collaborate
+
+::: notes
+* The [Technology Code of Practice](https://www.gov.uk/guidance/the-technology-code-of-practice) echoes these sentiments.
+* [Criterion 3](https://www.gov.uk/guidance/be-open-and-use-open-source): 'Publish your code and use open source software to improve transparency, flexibility and accountability.'
+* [Criterion 8](https://www.gov.uk/guidance/share-and-reuse-technology): 'Avoid duplicating effort and unnecessary costs by collaborating across government and sharing and reusing technology, data, and services.'
+
 :::
 
 # A metaphor {.center data-background-image="assets/images/pegboard-invert.png" data-background-opacity=0.1}
@@ -173,18 +222,9 @@ a11ytables::create_a11ytable(
 
 ## tl;dr {.center data-background-image="assets/images/pegboard.png" data-background-opacity=0.1}
 
-1. Do less
-2. Iterate, then iterate again
-2. Make things open, it makes things better
+1. Think sustainably
+1. Advertise
+1. Centralise
 
 ::: notes
-* The 'too long didn't read' summary once more, as stolen from [the Government Design Principles](https://www.gov.uk/guidance/government-design-principles).
-* 'If we’ve found a way of doing something that works, we should make it reusable and shareable instead of reinventing the wheel every time.'
-* 'The best way to build good <s>services</s> tools is to start small and iterate wildly.'
-* 'Share code, share designs, share ideas, share intentions, share failures.'
 :::
-
-## Links for nerds {.center data-background-image="assets/images/pegboard.png" data-background-opacity=0.1}
-
-* {a11ytables} R package ([GitHub](https://github.com/co-analysis/a11ytables), [site](https://co-analysis.github.io/a11ytables/)), [spreadsheet guidance]()
-* [Slides](https://matt-dray.github.io/earl22-presentation/#/title-slide) and [blog](https://www.rostrum.blog/2022/09/07/earl22/) for EARL 2022 ([video](https://videos.ctfassets.net/k26sw1bgepr3/6QYherR2skslFhYvbWWuYR/d5f0cda59597cb1bfa0d163662ce5a01/Stream_1_Matt_Dray.mp4)), Scottish Government and NHS-R ([video](https://www.youtube.com/watch?v=VcEZBYDBJwo))

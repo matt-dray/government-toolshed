@@ -390,7 +390,7 @@
 <section id="title-slide" data-background-image="assets/images/pegboard-invert.png" data-background-opacity="0.1" data-notes="<ul>
 <li>I’m here to talk about making and sharing tools.</li>
 <li>I work at UKHSA, but this is a personal perspective.</li>
-<li>In these 15 mins I’ll reflect on my failures and plead desperately for help.</li>
+<li>In these 15 mins I’ll reflect on my successes and failures and plead desperately for help.</li>
 <li>Thank you for agreeing to come to my therapy session.</li>
 </ul>" class="quarto-title-block center">
   <h1 class="title">Panic!<br>In The Toolshed</h1>
@@ -408,17 +408,16 @@ Matt Dray, June 2023
 <section id="tldr" class="slide level2 center" data-background-image="assets/images/pegboard.png" data-background-opacity="0.1">
 <h2>tl;dr</h2>
 <ol type="1">
-<li>Do less</li>
-<li>Iterate, then iterate again</li>
-<li>Make things open, it makes things better</li>
+<li>Think sustainably</li>
+<li>Advertise</li>
+<li>Centralise</li>
 </ol>
 <aside class="notes">
 <ul>
-<li>‘Too long didn’t read’.</li>
-<li>The three main takeaways are stolen from <a href="https://www.gov.uk/guidance/government-design-principles">the Government Design Principles</a>.</li>
-<li>‘If we’ve found a way of doing something that works, we should make it reusable and shareable instead of reinventing the wheel every time.’</li>
-<li>‘The best way to build good <s>services</s> tools is to start small and iterate wildly.’</li>
-<li>‘Share code, share designs, share ideas, share intentions, share failures.’</li>
+<li>‘tl;dr’ is ‘too long didn’t read’.</li>
+<li>Design your tools so that it’s not a problem if you disappear.</li>
+<li>Tell people about the project to help uncover duplication and get them involved.</li>
+<li>Store all aspects of the project (code, documentation) in an obvious, open place that others can contribute to.</li>
 </ul>
 <style type="text/css">
         span.MJX_Assistive_MathML {
@@ -433,13 +432,13 @@ Matt Dray, June 2023
       }</style></aside>
 </section>
 <section>
-<section id="a-cautionary-tale" class="title-slide slide level1 center" data-background-image="assets/images/pegboard-invert.png" data-background-opacity="0.1">
-<h1>A cautionary tale</h1>
+<section id="an-experience" class="title-slide slide level1 center" data-background-image="assets/images/pegboard-invert.png" data-background-opacity="0.1">
+<h1>An experience</h1>
 <aside class="notes">
 <ul>
-<li>I think I’m here to share some wisdom.</li>
-<li>The best example I have is an R package I wrote that has mass appeal.</li>
-<li>I want to tell you what worked and what I regret.</li>
+<li>It’s easy to hand out platitudes and tell you what to do. Especially because you probably know you should do these things anyway.</li>
+<li>So for credibility I’ll give you an example of a tool I created.</li>
+<li>But nothing is ever easy, so I’ll tell you about its complications too.</li>
 </ul>
 <style type="text/css">
         span.MJX_Assistive_MathML {
@@ -462,10 +461,12 @@ Matt Dray, June 2023
 </ol>
 <aside class="notes">
 <ul>
-<li>Context: the <a href="https://analysisfunction.civilservice.gov.uk/">Government Analysis Function</a> created <a href="https://analysisfunction.civilservice.gov.uk/policy-store/releasing-statistics-in-spreadsheets/">new (and very good) guidance</a> for releasing statistics in spreadsheets.</li>
-<li>None of the spreadsheets in my team were compliant. Colours, blank columns, multiple headers. Classic non-accessible stuff. Also the whole process was point-and-click before I joined.</li>
-<li>Given multiple files staggered across releases, it made sense to create some reusable R functions to apply the new guidance consistently, which in turn meant it was worth while to create a package.</li>
-<li>Att the time, there was the Python package ‘gptables’, but it hadn’t yet been updated for the new guidance (it has been now) and there was no native R solution.</li>
+<li>Let me take you back to the heady days of 2021.</li>
+<li>The <a href="https://analysisfunction.civilservice.gov.uk/">Government Analysis Function</a> created <a href="https://analysisfunction.civilservice.gov.uk/policy-store/releasing-statistics-in-spreadsheets/">new (and very good) guidance</a> for releasing statistics in spreadsheets.</li>
+<li>None of the spreadsheets in my team were compliant. Colours, blank columns, multiple headers, footnotes hidden under tables. Classic non-accessible stuff.</li>
+<li>Also the production process was point-and-click before I joined.</li>
+<li>Given multiple files staggered across releases, it made sense to start with some reusable R functions to apply the new guidance consistently, which later meant it was worthwhile to create a package.</li>
+<li>At the time, there was the Python package ‘gptables’, but it hadn’t yet been updated for the new guidance (it has been now) and there was no native R solution.</li>
 </ul>
 <style type="text/css">
         span.MJX_Assistive_MathML {
@@ -479,13 +480,15 @@ Matt Dray, June 2023
           display:block!important;
       }</style></aside>
 </section>
-<section id="section" class="slide level2 center" data-background-image="assets/images/pegboard.png" data-background-opacity="0.1">
+<section id="section" class="slide level2 center-h" data-background-image="assets/images/pegboard.png" data-background-opacity="0.1">
 <h2></h2>
 
-<img data-src="assets/images/website-a11ytables.png" alt="A screenshot of the documentation website for the R package called a11ytables. It has several sections of information about the purpose of the package, the license, the authors, and more." class="r-stretch"><aside class="notes">
+<img data-src="assets/images/website-a11ytables.png" alt="A screenshot of the documentation website for the R package called a11ytables. It has several sections of information about the purpose of the package, the license, the authors, and more." class="r-stretch"><p><a href="https://co-analysis.github.io/a11ytables">co-analysis.github.io/a11ytables</a></p>
+<aside class="notes">
 <ul>
 <li>And so the {a11ytables} package was created. Entirely for our own use at first, but I got the feeling it would have other interested parties.</li>
-<li>What does it do? You give it your tables of data, along with some metadata like worksheet titles, and it automatically creates an xlsx spreadsheet that is (mostly!) compliant with the guidance.</li>
+<li>What does it do? You give it your tables of data, along with some metadata like worksheet titles, and it automatically creates an xlsx spreadsheet that is (mostly!) compliant with the guidance. It does the hard work for you, basically.</li>
+<li>This screenshot is the documentation homepage.</li>
 </ul>
 <style type="text/css">
         span.MJX_Assistive_MathML {
@@ -517,7 +520,11 @@ Matt Dray, June 2023
 <span id="cb1-12"><a href="#cb1-12"></a>  openxlsx<span class="sc">::</span><span class="fu">saveWorkbook</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <aside class="notes">
-
+<ul>
+<li>The code is openly available on GitHub, so people can freely download it, ask questions, or contribute code.</li>
+<li>Users see only two functions, basically: one to organise the data into a dataframe and a second one to apply the structure and style of a best-practice spreadsheet.</li>
+<li></li>
+</ul>
 <style type="text/css">
         span.MJX_Assistive_MathML {
           position:absolute!important;
@@ -555,8 +562,8 @@ Matt Dray, June 2023
           display:block!important;
       }</style></aside>
 </section>
-<section id="uhoh" class="slide level2 center" data-background-image="assets/images/pegboard.png" data-background-opacity="0.1">
-<h2>Uhoh…</h2>
+<section id="panic" class="slide level2 center" data-background-image="assets/images/pegboard.png" data-background-opacity="0.1">
+<h2>Panic!</h2>
 <ul>
 <li>The (only) maintainer left the org!</li>
 <li>Should {a11ytables2} exist?</li>
@@ -564,10 +571,10 @@ Matt Dray, June 2023
 </ul>
 <aside class="notes">
 <ul>
-<li>This section was about me sharing my wisdom, but actully I’d like you to share yours.</li>
-<li>Maybe the {a11ytables} package could change GitHub organisation? Need to think about licensing, broken URLs, burden on new owner.</li>
-<li>Could ask Cabinet Office to archive the original {a11ytables} and clearly signpost this in the README, then communicate widely about the new package and target known users.</li>
-<li>Another example is the {fingertipsR} package, which was removed from CRAN. URLs have broken, search engines show the ‘removed from CRAN’ page high in the rankings.</li>
+<li>Despite some success, there are some complications.</li>
+<li>I wrote the package in a department that I’ve now left. My access to the GitHub repo is diminished. How does this impact things?</li>
+<li>{a11ytables} is based on the {openxlsx} package. An {openxlsx2} package is maturing and has better support for a number of features, like automatic font colouring, and should make for more readable code on the backend. So should {a11ytables} be updated? Or is this the chance to make an ‘{a11ytables2}’?</li>
+<li>This raises a wider question of where this kind of tool should live. It was developed in one particular department on their time, so it ‘belongs’ to them. But now it’s stuck in a liminal space. Need to think about licensing, broken URLs, burden on new owner, etc.</li>
 </ul>
 <style type="text/css">
         span.MJX_Assistive_MathML {
@@ -582,10 +589,12 @@ Matt Dray, June 2023
       }</style></aside>
 </section></section>
 <section>
-<section id="a-resolution" class="title-slide slide level1 center" data-background-image="assets/images/pegboard-invert.png" data-background-opacity="0.1">
-<h1>A resolution</h1>
+<section id="reflection" class="title-slide slide level1 center" data-background-image="assets/images/pegboard-invert.png" data-background-opacity="0.1">
+<h1>Reflection</h1>
 <aside class="notes">
-
+<ul>
+<li>I think the experience boils down to three things: think sustainably, advertise and centralise.</li>
+</ul>
 <style type="text/css">
         span.MJX_Assistive_MathML {
           position:absolute!important;
@@ -606,7 +615,11 @@ Matt Dray, June 2023
 <li>Plan for your loss</li>
 </ul>
 <aside class="notes">
-
+<ul>
+<li>Start small and simple, then build up.</li>
+<li>Make it easy for you and others to understand the code.</li>
+<li>All of this will make it easier if you leave the project.</li>
+</ul>
 <style type="text/css">
         span.MJX_Assistive_MathML {
           position:absolute!important;
@@ -622,12 +635,18 @@ Matt Dray, June 2023
 <section id="advertise" class="slide level2 center" data-background-image="assets/images/pegboard.png" data-background-opacity="0.1">
 <h2>2. Advertise</h2>
 <ul>
-<li>You need momentum</li>
 <li>Show it off</li>
-<li>Answer questions, encourage collaborators</li>
+<li>Expose duplication early</li>
+<li>Build a community</li>
 </ul>
 <aside class="notes">
-
+<ul>
+<li>How can anyone find your project? Talk about it in internal networks, at Coffee &amp; Coding, etc. Expand out to external events even if you don’t think there are users there; try Slack, or these Data Science meetups, or even external events. You could inspire someone else.</li>
+<li>The sooner you start talking about it, the sooner you’ll find out if it already exists.</li>
+<li>Encourage questions and collaborators to help improve the thing.</li>
+<li>This is not about ‘marketing’, ‘clout’, or impressing people. It’s about making people’s lives easier.</li>
+<li>The smart ones among you will realise that this is pretty meta: I’m advertising while I tell you to advertise.</li>
+</ul>
 <style type="text/css">
         span.MJX_Assistive_MathML {
           position:absolute!important;
@@ -644,11 +663,83 @@ Matt Dray, June 2023
 <h2>3. Centralise</h2>
 <ul>
 <li>Work together, avoid duplication</li>
-<li>Encourage institutional ownership</li>
+<li>Encourage community ownership</li>
 <li>Build a toolshed, they will come?</li>
 </ul>
 <aside class="notes">
-
+<ul>
+<li>Bring together your code in one place; ideally into a package structure if it makes sense. Get it off your local drive and made available to your team, to your org, to the government and beyond.</li>
+<li>Tools created on government time belong to the taxpayer.</li>
+</ul>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section></section>
+<section>
+<section id="its-not-just-me" class="title-slide slide level1 center" data-background-image="assets/images/pegboard-invert.png" data-background-opacity="0.1">
+<h1>It’s not just me</h1>
+<aside class="notes">
+<ul>
+<li>Turns out that there are principles that relate to these ideas already; they just aren’t spelled out in a way that’s aimed directly at creators of analytical tools like we’re talking about today.</li>
+</ul>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="gov-design-principles" class="slide level2 center" data-background-image="assets/images/pegboard.png" data-background-opacity="0.1">
+<h2><a href="https://www.gov.uk/guidance/government-design-principles">Gov Design Principles</a></h2>
+<ul>
+<li>Do less<br></li>
+<li>Iterate, then iterate again<br></li>
+<li>Make things open, it makes things better</li>
+</ul>
+<aside class="notes">
+<ul>
+<li>These three points from <a href="https://www.gov.uk/guidance/government-design-principles">the Government Design Principles</a> are helpful in the context of writing tools as well.</li>
+<li>Principle 2: ‘If we’ve found a way of doing something that works, we should make it reusable and shareable instead of reinventing the wheel every time.’</li>
+<li>Principle 5: ‘The best way to build good <s>services</s> tools is to start small and iterate wildly.’</li>
+<li>Principle 10: ‘Share code, share designs, share ideas, share intentions, share failures.’</li>
+</ul>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="tech-code-of-practice" class="slide level2 center" data-background-image="assets/images/pegboard.png" data-background-opacity="0.1">
+<h2><a href="https://www.gov.uk/guidance/the-technology-code-of-practice">Tech Code of Practice</a></h2>
+<ul>
+<li>Be open and use open source<br></li>
+<li>Share, reuse and collaborate</li>
+</ul>
+<aside class="notes">
+<ul>
+<li>The <a href="https://www.gov.uk/guidance/the-technology-code-of-practice">Technology Code of Practice</a> echoes these sentiments.</li>
+<li><a href="https://www.gov.uk/guidance/be-open-and-use-open-source">Criterion 3</a>: ‘Publish your code and use open source software to improve transparency, flexibility and accountability.’</li>
+<li><a href="https://www.gov.uk/guidance/share-and-reuse-technology">Criterion 8</a>: ‘Avoid duplicating effort and unnecessary costs by collaborating across government and sharing and reusing technology, data, and services.’</li>
+</ul>
 <style type="text/css">
         span.MJX_Assistive_MathML {
           position:absolute!important;
@@ -728,17 +819,12 @@ Matt Dray, June 2023
 <section id="tldr-1" class="slide level2 center" data-background-image="assets/images/pegboard.png" data-background-opacity="0.1">
 <h2>tl;dr</h2>
 <ol type="1">
-<li>Do less</li>
-<li>Iterate, then iterate again</li>
-<li>Make things open, it makes things better</li>
+<li>Think sustainably</li>
+<li>Advertise</li>
+<li>Centralise</li>
 </ol>
 <aside class="notes">
-<ul>
-<li>The ‘too long didn’t read’ summary once more, as stolen from <a href="https://www.gov.uk/guidance/government-design-principles">the Government Design Principles</a>.</li>
-<li>‘If we’ve found a way of doing something that works, we should make it reusable and shareable instead of reinventing the wheel every time.’</li>
-<li>‘The best way to build good <s>services</s> tools is to start small and iterate wildly.’</li>
-<li>‘Share code, share designs, share ideas, share intentions, share failures.’</li>
-</ul>
+
 <style type="text/css">
         span.MJX_Assistive_MathML {
           position:absolute!important;
@@ -750,13 +836,6 @@ Matt Dray, June 2023
           overflow: hidden!important;
           display:block!important;
       }</style></aside>
-</section>
-<section id="links-for-nerds" class="slide level2 center" data-background-image="assets/images/pegboard.png" data-background-opacity="0.1">
-<h2>Links for nerds</h2>
-<ul>
-<li>{a11ytables} R package (<a href="https://github.com/co-analysis/a11ytables">GitHub</a>, <a href="https://co-analysis.github.io/a11ytables/">site</a>), <a href="">spreadsheet guidance</a></li>
-<li><a href="https://matt-dray.github.io/earl22-presentation/#/title-slide">Slides</a> and <a href="https://www.rostrum.blog/2022/09/07/earl22/">blog</a> for EARL 2022 (<a href="https://videos.ctfassets.net/k26sw1bgepr3/6QYherR2skslFhYvbWWuYR/d5f0cda59597cb1bfa0d163662ce5a01/Stream_1_Matt_Dray.mp4">video</a>), Scottish Government and NHS-R (<a href="https://www.youtube.com/watch?v=VcEZBYDBJwo">video</a>)</li>
-</ul>
 <div class="footer footer-default">
 
 </div>
