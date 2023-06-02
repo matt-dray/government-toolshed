@@ -227,7 +227,10 @@ a11ytables::create_a11ytable(
 * Think sustainably: design your tools so that it's not a problem if you disappear.
 * Centralise: store all aspects of the project (code, documentation) in an obvious, open place that others can contribute to.
 * Advertise: tell people about the project to help uncover duplication and get them involved.
+* Think of these things when you're developing things and hopefully you won't end up panicking in the toolshed like me.
 :::
+
+[matt-dray.github.io/government-toolshed](https://matt-dray.github.io/government-toolshed)
 
 ## {.center data-background-image="assets/images/pegboard.png" data-background-opacity=0.1}
 
