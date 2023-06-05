@@ -6,36 +6,30 @@ format:
   revealjs: 
     theme: [default, assets/styles/toolshed-style.scss]
     menu: true
-    code-line-numbers: true
 title-slide-attributes:
   data-background-image: assets/images/pegboard-invert.png
   data-background-opacity: "0.1"
   data-notes: |
-    * I'm here to talk about making and sharing tools, mostly software, in government.
-    * I work at UKHSA, but this is a personal perspective.
-    * In these 15 mins or so I'll reflect on a success that has also resulted in some mild panic, and I'll tell you what I learnt.
-    * Thank you for coming to my therapy session.
+    * I'm here to talk about making and sharing tools across government.
+    * I'm here because I made a thing and learnt some lessons along the way.
+    * I'm also here as penance becuase I made work for Mia by suggesting today's topic.
+    * I work at UKHSA, but this is a personal perspective of work I did while in CO.
 ---
 
 ## tl;dr {.center data-background-image="assets/images/pegboard.png" data-background-opacity=0.1}
 
-1. Sustainabilise
-1. Centralise
-1. Advertise
+Share your tools!
 
 ::: notes
-* 'tl;dr' is 'too long didn't read'. These are the three things that you should consider when building tools. I don't think they're that surprising (even if one of them is not a real word).
-* Think sustainably: design your tools so that it's not a problem if you disappear.
-* Centralise: store all aspects of the project (code, documentation) in an obvious, open place that others can contribute to.
-* Advertise: tell people about the project to help uncover duplication and get them involved.
+* The 'too long didn't read' for this talk is very simple and you already know it.
+* By 'tools' I'm thinking of software, packages, that sort of thing. But it also applies to stuff that isn't code as well.
 :::
 
 # An experience {.center data-background-image="assets/images/pegboard-invert.png" data-background-opacity=0.1}
 
 ::: notes
-* It's easy to hand out platitudes and tell you what to do. Especially because you probably know you should do these things anyway.
-* So for credibility I'll give you an example of a tool I created.
-* But nothing is ever easy, so I'll tell you about its complications too.
+* I could just leave it at that.
+* To add credibility I'll tell you a little story about a tool I created and shared, and the things I wish I'd thought harder and earlier about.
 :::
 
 ## Thought process (2021) {.center data-background-image="assets/images/pegboard.png" data-background-opacity=0.1}
@@ -56,7 +50,6 @@ title-slide-attributes:
 ## {.center-h data-background-image="assets/images/pegboard.png" data-background-opacity=0.1}
 
 ![](assets/images/website-a11ytables.png){alt='A screenshot of the documentation website for the R package called a11ytables. It has several sections of information about the purpose of the package, the license, the authors, and more.'}
-
 [co-analysis.github.io/a11ytables](https://co-analysis.github.io/a11ytables)
 
 ::: notes
@@ -65,36 +58,11 @@ title-slide-attributes:
 * This screenshot is the documentation homepage.
 :::
 
-# {.center data-background-image="assets/images/pegboard.png" data-background-opacity=0.1}
-
-```{r}
-#| eval = FALSE,
-#| echo = TRUE
-remotes::install_github("co-analysis/a11ytables")
-
-a11ytables::create_a11ytable(
-  tab_titles,
-  sheet_types,
-  sheet_titles,
-  blank_cells,
-  sources,
-  tables
-) |>
-  a11ytables::generate_workbook() |>
-  openxlsx::saveWorkbook()
-```
-
-::: notes
-* The code is openly available on GitHub, so people can freely download it, ask questions, or contribute code.
-* Users see only two functions, basically: one to organise the data into a dataframe and a second one to apply the structure and style of a best-practice spreadsheet.
-* 
-:::
-
 ## Success! {.center data-background-image="assets/images/pegboard.png" data-background-opacity=0.1}
 
 * It did what I wanted it to do
-* I told people about it
 * It's in use across government
+* It's been improved by feedback
 
 ::: notes
 * I used it to successfully create the spreadsheets we needed to release. The lowest bar!
@@ -106,7 +74,7 @@ a11ytables::create_a11ytable(
 
 * The maintainer left the org!
 * Should {a11ytables2} exist?
-* Where should these things live?
+* Where should tools live?
 
 ::: notes
 * Despite some success, there are some complications.
@@ -118,7 +86,9 @@ a11ytables::create_a11ytable(
 # Reflection {.center data-background-image="assets/images/pegboard-invert.png" data-background-opacity=0.1}
 
 ::: notes
-* I think the experience boils down to three things: think sustainably, advertise and centralise.
+* I could probably have thought about these things earlier. So here I am telling you to think about these things.
+* If I were to tease this out a bit, the experience boils down to three things: think sustainably, advertise and centralise.
+* I don't think they're that surprising (even if one of them is not a real word).
 :::
 
 ## 1. Sustainabilise {.center data-background-image="assets/images/pegboard.png" data-background-opacity=0.1}
@@ -136,14 +106,14 @@ a11ytables::create_a11ytable(
 ## 2. Centralise {.center data-background-image="assets/images/pegboard.png" data-background-opacity=0.1}
 
 * Make it discrete
-* Make it open
+* Make it easy to find
 * Pool your tools
 
 ::: {.notes}
-* Bring together your code in one place; ideally into a package structure if it makes sense. Make it into a defined 'thing' rather than 'a bunch of stuff in a folder'.
-* Get it off your local drive and made available to your team, to your org, to the government, and beyond.
-* Tools created on government time belong to the taxpayer. Making it open improves transparency, but also makes it much easier for others to collaborate and ask questions. (Yes, I understand that certain things are sensitive and it's not easy to do make them freely available.)
-* Try to surface your organisation's tools in one place. 
+* Bring together your code in one place; ideally into a package structure if it makes sense. Make it into a defined 'thing' rather than 'a bunch of stuff in a folder'. You should be able to point to it as a single URL or filepath at worst.
+* Get it off your local drive and made available to your team, to your org, to the government, and beyond. 
+* Tools created on government time belong to the taxpayer. Making it open improves transparency, but also makes it much easier for others to collaborate and ask questions. (Yes, I understand that certain things are sensitive and it's not easy to do make them freely available, but try to default to openness where possible.)
+* Try to surface tools in one place, at team and organisation-level at very least. The people most likely to need your tools are probably at these scales. But why stop there?
 :::
 
 ## 3. Advertise {.center data-background-image="assets/images/pegboard.png" data-background-opacity=0.1}
@@ -163,7 +133,8 @@ a11ytables::create_a11ytable(
 # It's not just me {.center data-background-image="assets/images/pegboard-invert.png" data-background-opacity=0.1}
 
 ::: notes
-* Turns out that there are principles that relate to these ideas already; they just aren't spelled out in a way that's aimed directly at creators of analytical tools like we're talking about today.
+* Turns out that there are government principles that relate to these ideas already.
+* These principles focus more on digital services, but we can co-opt them for tools. 
 :::
 
 ## [Gov Design Principles](https://www.gov.uk/guidance/government-design-principles) {.center data-background-image="assets/images/pegboard.png" data-background-opacity=0.1}
@@ -194,7 +165,8 @@ a11ytables::create_a11ytable(
 # A metaphor {.center data-background-image="assets/images/pegboard-invert.png" data-background-opacity=0.1}
 
 ::: notes
-* You'll have noticed the idea of a 'toolshed' in the theme of this session.
+* You'll have noticed the idea of a 'toolshed' as the theme of this session.
+* I'm going to humour Mia by spelling it out literally.
 :::
 
 ## {background-image="assets/images/ashim-d-silva-Kw_zQBAChws-unsplash.jpg"}
@@ -203,8 +175,8 @@ a11ytables::create_a11ytable(
 * Is this the current state of things? 
 * We know there are tools in use across government that others might be able to use or contribute to, but they're not organised.
 * Maybe some are multifaceted instruments, like the Swiss Army knife; maybe some are more blunt, like this tomahawk; maybe some are overcomplicated, like this knife that has a picture of a... knife... on it.
-* Is a nail an tool? Maybe it needs a hammer. Where can I find one?
-* You get the idea. It's a metaphor.
+* Is a nail a tool? Maybe it needs a hammer. Where can I find one?
+* You get the idea. It's a metaphor. What the heck is available and how the heck can I find what I need?
 
 :::
 
@@ -212,25 +184,25 @@ a11ytables::create_a11ytable(
 
 ::: notes
 * Could this be the future state of things?
-* What if we could organise and arrange our tools so everyone can more easily find and use them?
+* What if we could organise and arrange our tools so everyone can more easily find and use them? What would that look like for us at a government-wide level?
 * Fittingly, this image has some empty spots to be filled and also some tools that fill a spot, but don't quit fit the spot. Room to develop?
-* But maybe we need something more like a Toolstation (not sponsoring this talk) that has a catlogue that you can peruse.
+* But maybe we need something more like a Toolstation (not sponsoring this talk) that has a catalogue that you can peruse.
 :::
 
 ## tl;dr {.center data-background-image="assets/images/pegboard.png" data-background-opacity=0.1}
 
-1. Sustainabilise
-1. Centralise
-1. Advertise
+* Share your tools!
+* Sustainabilise, centralise, advertise
+* What would a cross-gov toolshed look like?
+* [matt-dray.github.io/government-toolshed](https://matt-dray.github.io/government-toolshed)
 
 ::: notes
 * Think sustainably: design your tools so that it's not a problem if you disappear.
 * Centralise: store all aspects of the project (code, documentation) in an obvious, open place that others can contribute to.
 * Advertise: tell people about the project to help uncover duplication and get them involved.
 * Think of these things when you're developing things and hopefully you won't end up panicking in the toolshed like me.
+* Thank you for coming to my therapy session.
 :::
-
-[matt-dray.github.io/government-toolshed](https://matt-dray.github.io/government-toolshed)
 
 ## {.center data-background-image="assets/images/pegboard.png" data-background-opacity=0.1}
 
