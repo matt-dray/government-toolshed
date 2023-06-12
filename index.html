@@ -28,6 +28,70 @@
       margin: 0 0.8em 0.2em -1.6em;
       vertical-align: middle;
     }
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      { color: #003b4f; background-color: #f1f3f5; }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span { color: #003b4f; } /* Normal */
+    code span.al { color: #ad0000; } /* Alert */
+    code span.an { color: #5e5e5e; } /* Annotation */
+    code span.at { color: #657422; } /* Attribute */
+    code span.bn { color: #ad0000; } /* BaseN */
+    code span.bu { } /* BuiltIn */
+    code span.cf { color: #003b4f; } /* ControlFlow */
+    code span.ch { color: #20794d; } /* Char */
+    code span.cn { color: #8f5902; } /* Constant */
+    code span.co { color: #5e5e5e; } /* Comment */
+    code span.cv { color: #5e5e5e; font-style: italic; } /* CommentVar */
+    code span.do { color: #5e5e5e; font-style: italic; } /* Documentation */
+    code span.dt { color: #ad0000; } /* DataType */
+    code span.dv { color: #ad0000; } /* DecVal */
+    code span.er { color: #ad0000; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #ad0000; } /* Float */
+    code span.fu { color: #4758ab; } /* Function */
+    code span.im { color: #00769e; } /* Import */
+    code span.in { color: #5e5e5e; } /* Information */
+    code span.kw { color: #003b4f; } /* Keyword */
+    code span.op { color: #5e5e5e; } /* Operator */
+    code span.ot { color: #003b4f; } /* Other */
+    code span.pp { color: #ad0000; } /* Preprocessor */
+    code span.sc { color: #5e5e5e; } /* SpecialChar */
+    code span.ss { color: #20794d; } /* SpecialString */
+    code span.st { color: #20794d; } /* String */
+    code span.va { color: #111111; } /* Variable */
+    code span.vs { color: #20794d; } /* VerbatimString */
+    code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   </style>
   <link rel="stylesheet" href="index_files/libs/revealjs/dist/theme/quarto.css" id="theme">
   <link href="index_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
@@ -324,10 +388,10 @@
     <div class="slides">
 
 <section id="title-slide" data-background-image="assets/images/pegboard-invert.png" data-background-opacity="0.1" data-notes="<ul>
-<li>I’m here to talk about making and sharing tools across government.</li>
-<li>I’m here because I made a thing and learnt some lessons along the way.</li>
-<li>I’m also here as penance becuase I made work for Mia by suggesting today’s topic.</li>
+<li>I’m Matt Dray, here to talk about making and sharing tools across government.</li>
 <li>I work at UKHSA, but this is a personal perspective of work I did while in CO.</li>
+<li>I’m here because I once made a thing and learnt some hard lessons from the process.</li>
+<li>I’m also here as penance: I made work for Mia by suggesting today’s topic in a Slack conversation.</li>
 </ul>" class="quarto-title-block center">
   <h1 class="title">Panic!<br>In The Toolshed</h1>
   <p class="subtitle"><a href="https://matt-dray.github.io/government-toolshed">matt-dray.github.io/government-toolshed</a></p>
@@ -343,10 +407,11 @@
 </section>
 <section id="tldr" class="slide level2 center" data-background-image="assets/images/pegboard.png" data-background-opacity="0.1">
 <h2>tl;dr</h2>
-<p>Share your tools!</p>
+<p>Share your tools</p>
 <aside class="notes">
 <ul>
-<li>The ‘too long didn’t read’ for this talk is very simple and you already know it.</li>
+<li>The ‘too long didn’t read’ for this talk is very simple and you already know it: if you make something helpful, then share it with others. Share it even if it isn’t completely helpful yet.</li>
+<li>This will help reduce duplication, improve quality and improve efficiency.</li>
 <li>By ‘tools’ I’m thinking of software, packages, that sort of thing. But it also applies to stuff that isn’t code as well.</li>
 </ul>
 <style type="text/css">
@@ -381,21 +446,59 @@
           display:block!important;
       }</style></aside>
 </section>
-<section id="thought-process-2021" class="slide level2 center" data-background-image="assets/images/pegboard.png" data-background-opacity="0.1">
-<h2>Thought process (2021)</h2>
-<ol type="1">
-<li>There’s new <a href="https://analysisfunction.civilservice.gov.uk/policy-store/releasing-statistics-in-spreadsheets/">spreadsheet guidance</a></li>
-<li>Might as well write some functions</li>
-<li>Other people are probably doing this</li>
-</ol>
+<section id="section" class="slide level2 center-h" data-background-image="assets/images/pegboard.png" data-background-opacity="0.1">
+<h2></h2>
+
+<img data-src="assets/images/website-guidance.png" alt="Guidance from the Analysis Function called releasing statistics in spreadsheets." class="r-stretch"><div class="footer">
+<p><a href="https://analysisfunction.civilservice.gov.uk/policy-store/releasing-statistics-in-spreadsheets/">https://analysisfunction.civilservice.gov.uk/policy-store/releasing-statistics-in-spreadsheets/</a></p>
+</div>
 <aside class="notes">
 <ul>
-<li>Remember 2021? Me neither.</li>
-<li>The <a href="https://analysisfunction.civilservice.gov.uk/">Government Analysis Function</a> created <a href="https://analysisfunction.civilservice.gov.uk/policy-store/releasing-statistics-in-spreadsheets/">new (and very good) guidance</a> for releasing statistics in spreadsheets.</li>
-<li>None of the spreadsheets in my team were compliant. Colours, blank columns, multiple headers, footnotes hidden under tables. Classic non-accessible stuff.</li>
-<li>Also the production process was point-and-click before I joined.</li>
-<li>Given multiple files staggered across releases, it made sense to start with some reusable R functions to apply the new guidance consistently, which later meant it was worthwhile to create a package.</li>
-<li>At the time, there was <a href="https://gptables.readthedocs.io/en/latest/">the Python package ‘gptables’</a> from members of the Analysis Function, but it hadn’t yet been updated for the new guidance (it has been now) and there was no native R solution. R users are special and they deserve the very best.</li>
+<li>In 2021, which feels like 100 years ago, the <a href="https://analysisfunction.civilservice.gov.uk/">Government Analysis Function</a> created <a href="https://analysisfunction.civilservice.gov.uk/policy-store/releasing-statistics-in-spreadsheets/">new (and very good) guidance</a> for releasing statistics in spreadsheets.</li>
+<li>My team published a number of spreadsheets on GOV.UK, but none were compliant. They used cell colour as data, had empty columns, used multiple headers and had footnotes hidden under tables. Classic non-accessible stuff.</li>
+<li>In addition, the production process was point-and-click and wasted a lot of time.</li>
+<li>There was an opportunity to use the new guidance to overhaul our publications.</li>
+</ul>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section></section>
+<section>
+<section id="section-1" class="title-slide slide level1 center" data-background-image="assets/images/pegboard.png" data-background-opacity="0.1">
+<h1></h1>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a>remotes<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">"co-analysis/a11ytables"</span>)</span>
+<span id="cb1-2"><a href="#cb1-2"></a></span>
+<span id="cb1-3"><a href="#cb1-3"></a>a11ytables<span class="sc">::</span><span class="fu">create_a11ytable</span>(</span>
+<span id="cb1-4"><a href="#cb1-4"></a>  tab_titles,</span>
+<span id="cb1-5"><a href="#cb1-5"></a>  sheet_types,</span>
+<span id="cb1-6"><a href="#cb1-6"></a>  sheet_titles,</span>
+<span id="cb1-7"><a href="#cb1-7"></a>  blank_cells,</span>
+<span id="cb1-8"><a href="#cb1-8"></a>  sources,</span>
+<span id="cb1-9"><a href="#cb1-9"></a>  tables</span>
+<span id="cb1-10"><a href="#cb1-10"></a>) <span class="sc">|&gt;</span></span>
+<span id="cb1-11"><a href="#cb1-11"></a>  a11ytables<span class="sc">::</span><span class="fu">generate_workbook</span>() <span class="sc">|&gt;</span></span>
+<span id="cb1-12"><a href="#cb1-12"></a>  openxlsx<span class="sc">::</span><span class="fu">saveWorkbook</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="footer">
+<p><a href="https://github.com/co-analysis/a11ytables">https://github.com/co-analysis/a11ytables</a></p>
+</div>
+<aside class="notes">
+<ul>
+<li>I started with some reusable R functions to apply the new guidance consistently, which later meant it was worthwhile to create a package so it could be more easily maintained and shared.</li>
+<li>The package is called <a href="https://co-analysis.github.io/a11ytables">{a11ytables}</a> and this is an example of what it looks like in use.</li>
+<li>What does the package do? You give it your tables of data, along with some metadata like worksheet titles, and it automatically creates an xlsx spreadsheet that complies with the guidance as far as possible.</li>
+<li>It does the hard work for you to structure and style your spreadsheets in a compliant way, basically.</li>
+<li>I should say that <a href="https://gptables.readthedocs.io/en/latest/">the Python package ‘gptables’</a> existed at the time, but it hadn’t yet been updated for the new guidance (it has been now) and there was no native R solution.</li>
+<li>R users are special, after all, and they deserve the very best.</li>
 </ul>
 <style type="text/css">
         span.MJX_Assistive_MathML {
@@ -409,14 +512,17 @@
           display:block!important;
       }</style></aside>
 </section>
-<section id="section" class="slide level2 center-h" data-background-image="assets/images/pegboard.png" data-background-opacity="0.1">
+<section id="section-2" class="slide level2 center-h" data-background-image="assets/images/pegboard.png" data-background-opacity="0.1">
 <h2></h2>
-<p><img data-src="assets/images/website-a11ytables.png" alt="A screenshot of the documentation website for the R package called a11ytables. It has several sections of information about the purpose of the package, the license, the authors, and more."> <a href="https://co-analysis.github.io/a11ytables">co-analysis.github.io/a11ytables</a></p>
+
+<img data-src="assets/images/website-a11ytables.png" alt="A screenshot of the documentation website for the R package called a11ytables. It has several sections of information about the purpose of the package, the license, the authors, and more." class="r-stretch"><div class="footer">
+<p><a href="https://co-analysis.github.io/a11ytables/">https://co-analysis.github.io/a11ytables/</a></p>
+</div>
 <aside class="notes">
 <ul>
-<li>And so the {a11ytables} package was created. Entirely for our own use at first, but I got the feeling it would have other interested parties.</li>
-<li>What does it do? You give it your tables of data, along with some metadata like worksheet titles, and it automatically creates an xlsx spreadsheet that is (mostly!) compliant with the guidance. It does the hard work for you, basically.</li>
-<li>This screenshot is the documentation homepage.</li>
+<li>So, having put in a little bit of effort already, and knowing that others should comply with the new guidance, it made sense to make it easy to use and to tell other people it existed.</li>
+<li>First, this involved making some half-decent documentation. The screenshot here is the package’s website.</li>
+<li>Then I spoke to likely users, both internally (i.e.&nbsp;at an NHS-R webinar, at a GSS Champions quarterly meeting, to a Scottish Government R conference) and externally (i.e.&nbsp;a talk at EARL conference 2022, blog posts, social media).</li>
 </ul>
 <style type="text/css">
         span.MJX_Assistive_MathML {
@@ -439,9 +545,10 @@
 </ul>
 <aside class="notes">
 <ul>
-<li>I used it to successfully create the spreadsheets we needed to release. The lowest bar!</li>
-<li>I spoke to some targeted groups that might find it useful: both internally (i.e.&nbsp;at an NHS-R webinar, at a GSS Champions quarterly meeting, to a Scottish Government R conference) and externally (i.e.&nbsp;a talk at EARL conference 2022, blog posts, social media). It’s referenced now from the Analysis Function <a href="https://analysisfunction.civilservice.gov.uk/policy-store/further-resources-for-releasing-statistics-in-spreadsheets/">spreadsheet guidance</a>.</li>
-<li>It’s not perfect, but the package is now in use across a number of organisations (CO, MoJ, ONS, DfT, Scot Gov, etc)</li>
+<li>I used it to successfully create the spreadsheets my team needed to release. The lowest bar!</li>
+<li>The package is now in use across a number of organisations (CO, MoJ, ONS, DfT, Scot Gov, etc).</li>
+<li>It’s also now referenced now from the Analysis Function <a href="https://analysisfunction.civilservice.gov.uk/policy-store/further-resources-for-releasing-statistics-in-spreadsheets/">spreadsheet guidance</a>, so that’s nice.</li>
+<li>I had lots of great input and ideas from colleagues, and inevitable bug-catching, which helped improve the package.</li>
 </ul>
 <style type="text/css">
         span.MJX_Assistive_MathML {
@@ -458,16 +565,19 @@
 <section id="panic" class="slide level2 center" data-background-image="assets/images/pegboard.png" data-background-opacity="0.1">
 <h2>Panic!</h2>
 <ul>
-<li>The maintainer left the org!</li>
+<li>Where’s the maintainer?</li>
+<li>Should it move to another repo?</li>
 <li>Should {a11ytables2} exist?</li>
-<li>Where should tools live?</li>
 </ul>
 <aside class="notes">
 <ul>
 <li>Despite some success, there are some complications.</li>
-<li>I wrote the package in a department that I’ve now left. My access to the GitHub repo is diminished. How does this impact things?</li>
+<li>I wrote the package in a department that I’ve now left. My access to the GitHub repo is diminished and it’s no longer a priority.</li>
+<li>How does this look from the user perspective? Will they think it’s stuck in liminal space or abandoned?</li>
+<li>Should I have asked earlier to transfer it somewhere more central than my division’s GitHub organisation? Where would I have transferred it to?</li>
+<li>Moving a package means you have to think about awkward things like licensing, broken URLs, the burden on the new owners, etc.</li>
 <li>{a11ytables} is based on the {openxlsx} package. An {openxlsx2} package is maturing and has better support for a number of features, like automatic font colouring, and should make for more readable code on the backend. So should {a11ytables} be updated? Or is this the chance to make an ‘{a11ytables2}’?</li>
-<li>This raises a wider question of where this kind of tool should live. It was developed in one particular department on their time, so it ‘belongs’ to them. But now it’s stuck in a liminal space. If it were to move somewhere else, we’d need to think about licensing, broken URLs, burden on new owner, etc.</li>
+<li>More importantly I think it’s a terrible package name, but it’s too late to change it.</li>
 </ul>
 <style type="text/css">
         span.MJX_Assistive_MathML {
@@ -486,9 +596,8 @@
 <h1>Reflection</h1>
 <aside class="notes">
 <ul>
-<li>I could probably have thought about these things earlier. So here I am telling you to think about these things.</li>
-<li>If I were to tease this out a bit, the experience boils down to three things: think sustainably, advertise and centralise.</li>
-<li>I don’t think they’re that surprising (even if one of them is not a real word).</li>
+<li>I could probably have thought about these things earlier. So here I am telling <em>you</em> to think about these things while you can.</li>
+<li>If I were to tease this out a bit, the experience boils down to three things: think sustainably, try to centralise, and make sure to advertise.</li>
 </ul>
 <style type="text/css">
         span.MJX_Assistive_MathML {
@@ -502,8 +611,8 @@
           display:block!important;
       }</style></aside>
 </section>
-<section id="sustainabilise" class="slide level2 center" data-background-image="assets/images/pegboard.png" data-background-opacity="0.1">
-<h2>1. Sustainabilise</h2>
+<section id="think-sustainably" class="slide level2 center" data-background-image="assets/images/pegboard.png" data-background-opacity="0.1">
+<h2>1. Think sustainably</h2>
 <ul>
 <li>Build modular things</li>
 <li>Write good documentation</li>
@@ -511,9 +620,10 @@
 </ul>
 <aside class="notes">
 <ul>
-<li>Start small and simple, then build up.</li>
+<li>First, what do I mean by ‘think sustainably’?</li>
+<li>Make smaller, simpler things that are easier to maintain and have a greater chance of being used more than once in multiple projects.</li>
 <li>Make it easy for you and others to understand the code.</li>
-<li>All of this will make it easier for others to maintain and develop the tool if you leave the project.</li>
+<li>Do what you can to make it as easy as possible for other people to use and develop it if you disappear.</li>
 </ul>
 <style type="text/css">
         span.MJX_Assistive_MathML {
@@ -536,6 +646,7 @@
 </ul>
 <aside class="notes">
 <ul>
+<li>Second was ‘centralise’.</li>
 <li>Bring together your code in one place; ideally into a package structure if it makes sense. Make it into a defined ‘thing’ rather than ‘a bunch of stuff in a folder’. You should be able to point to it as a single URL or filepath at worst.</li>
 <li>Get it off your local drive and made available to your team, to your org, to the government, and beyond.</li>
 <li>Tools created on government time belong to the taxpayer. Making it open improves transparency, but also makes it much easier for others to collaborate and ask questions. (Yes, I understand that certain things are sensitive and it’s not easy to do make them freely available, but try to default to openness where possible.)</li>
@@ -562,9 +673,10 @@
 </ul>
 <aside class="notes">
 <ul>
+<li>And third, ‘advertise’.</li>
 <li>How can anyone find your project? Talk about it in internal networks, at Coffee &amp; Coding, etc. Expand out to external events even if you don’t think there are users there; try Slack, or these Data Science meetups, or even external events. You could inspire someone else.</li>
 <li>The sooner you start talking about it, the sooner you’ll find out if it already exists.</li>
-<li>Encourage questions and collaborators to help improve the thing.</li>
+<li>Encourage questions and collaborators and build a little community to help improve the thing.</li>
 <li>This is not about ‘marketing’, ‘clout’, or impressing people. It’s about making people’s lives easier, including yours.</li>
 <li>The smart ones among you will realise that this is pretty meta: I’m advertising while I tell you to advertise.</li>
 </ul>
@@ -585,8 +697,9 @@
 <h1>It’s not just me</h1>
 <aside class="notes">
 <ul>
+<li>Of course, this isn’t new.</li>
 <li>Turns out that there are government principles that relate to these ideas already.</li>
-<li>These principles focus more on digital services, but we can co-opt them for tools.</li>
+<li>These principles focus more on digital services, but we can co-opt them for ‘tools’.</li>
 </ul>
 <style type="text/css">
         span.MJX_Assistive_MathML {
@@ -656,7 +769,7 @@
 <aside class="notes">
 <ul>
 <li>You’ll have noticed the idea of a ‘toolshed’ as the theme of this session.</li>
-<li>I’m going to humour Mia by spelling it out literally.</li>
+<li>I’m going to humour Mia by spelling it out more literally.</li>
 </ul>
 <style type="text/css">
         span.MJX_Assistive_MathML {
@@ -670,15 +783,14 @@
           display:block!important;
       }</style></aside>
 </section>
-<section id="section-1" class="slide level2" data-background-image="assets/images/ashim-d-silva-Kw_zQBAChws-unsplash.jpg">
+<section id="section-3" class="slide level2" data-background-image="assets/images/ashim-d-silva-Kw_zQBAChws-unsplash.jpg">
 <h2></h2>
 <aside class="notes">
 <ul>
-<li>Is this the current state of things?</li>
+<li>Is this the current state of the government toolshed?</li>
 <li>We know there are tools in use across government that others might be able to use or contribute to, but they’re not organised.</li>
 <li>Maybe some are multifaceted instruments, like the Swiss Army knife; maybe some are more blunt, like this tomahawk; maybe some are overcomplicated, like this knife that has a picture of a… knife… on it.</li>
-<li>Is a nail a tool? Maybe it needs a hammer. Where can I find one?</li>
-<li>You get the idea. It’s a metaphor. What the heck is available and how the heck can I find what I need?</li>
+<li>You get the idea. It’s a metaphor. What the heck is available and how the heck can I find it?</li>
 </ul>
 <style type="text/css">
         span.MJX_Assistive_MathML {
@@ -692,14 +804,62 @@
           display:block!important;
       }</style></aside>
 </section>
-<section id="section-2" class="slide level2" data-background-image="assets/images/cesar-carlevarino-aragon-NL_DF0Klepc-unsplash.jpg">
+<section id="section-4" class="slide level2" data-background-image="assets/images/cesar-carlevarino-aragon-NL_DF0Klepc-unsplash.jpg">
 <h2></h2>
 <aside class="notes">
 <ul>
-<li>Could this be the future state of things?</li>
+<li>Could this be the future state of the government toolshed?</li>
 <li>What if we could organise and arrange our tools so everyone can more easily find and use them? What would that look like for us at a government-wide level?</li>
 <li>Fittingly, this image has some empty spots to be filled and also some tools that fill a spot, but don’t quit fit the spot. Room to develop?</li>
-<li>But maybe we need something more like a Toolstation (not sponsoring this talk) that has a catalogue that you can peruse.</li>
+<li>But maybe we need something more like a Toolstation (not sponsoring this talk) that has a catalogue that you can peruse (other tool vendors are available).</li>
+</ul>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="section-5" class="slide level2 center" data-background-image="assets/images/pegboard.png" data-background-opacity="0.1">
+<h2></h2>
+
+<img data-src="assets/images/website-awesome.png" alt="A section of the README file from the Awesome List for Official Statistics Software on GitHub." class="r-stretch"><div class="footer">
+<p><a href="https://github.com/SNStatComp/awesome-official-statistics-software">https://github.com/SNStatComp/awesome-official-statistics-software</a></p>
+</div>
+<aside class="notes">
+<ul>
+<li>Let me give you an example of the simplest possible format that this take: it could just be an up-to-date <em>list</em>.</li>
+<li>This is an example hosted in a GitHub README. It’s a list of ‘awesome official statistics software.’</li>
+<li>There are many ‘Awesome’ lists on GitHub for all sorts of things. They’re usually fairly ad hoc.</li>
+</ul>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="section-6" class="slide level2 center" data-background-image="assets/images/pegboard.png" data-background-opacity="0.1">
+<h2></h2>
+
+<img data-src="assets/images/website-ctv.png" alt="An example CRAN Task View webpage, which lists R packages grouped by some specialism. This example is for official and survey statistics." class="r-stretch"><div class="footer">
+<p><a href="https://cran.r-project.org/web/views/OfficialStatistics.html">https://cran.r-project.org/web/views/OfficialStatistics.html</a></p>
+</div>
+<aside class="notes">
+<ul>
+<li>Another example is the more formal ‘CRAN Task View’. These are lists of R packages that are related to specific named tasks.</li>
+<li>This one is for official and survey statistics, for example.</li>
+<li>Wondering out loud: do you think this is something we should do, at very least?</li>
 </ul>
 <style type="text/css">
         span.MJX_Assistive_MathML {
@@ -716,18 +876,15 @@
 <section id="tldr-1" class="slide level2 center" data-background-image="assets/images/pegboard.png" data-background-opacity="0.1">
 <h2>tl;dr</h2>
 <ul>
-<li>Share your tools!</li>
+<li>Share your tools</li>
 <li>Sustainabilise, centralise, advertise</li>
-<li>What would a cross-gov toolshed look like?</li>
-<li><a href="https://matt-dray.github.io/government-toolshed">matt-dray.github.io/government-toolshed</a></li>
+<li>Don’t panic!</li>
 </ul>
 <aside class="notes">
 <ul>
-<li>Think sustainably: design your tools so that it’s not a problem if you disappear.</li>
-<li>Centralise: store all aspects of the project (code, documentation) in an obvious, open place that others can contribute to.</li>
-<li>Advertise: tell people about the project to help uncover duplication and get them involved.</li>
-<li>Think of these things when you’re developing things and hopefully you won’t end up panicking in the toolshed like me.</li>
-<li>Thank you for coming to my therapy session.</li>
+<li>Anyway, to recap, I’m telling you to do obvious things like ‘share you tools’, but also to think about how you can make that easier for yourself in future.</li>
+<li>And if you don’t care about anyone else, then at least prevent future-you from panicking.</li>
+<li>I’ve been Matt Dray, thank you for coming to my therapy session.</li>
 </ul>
 <style type="text/css">
         span.MJX_Assistive_MathML {
@@ -741,21 +898,17 @@
           display:block!important;
       }</style></aside>
 </section>
-<section id="section-3" class="slide level2 center" data-background-image="assets/images/pegboard.png" data-background-opacity="0.1">
+<section id="section-7" class="slide level2 center" data-background-image="assets/images/pegboard.png" data-background-opacity="0.1">
 <h2></h2>
-<aside class="notes">
-
-<style type="text/css">
-        span.MJX_Assistive_MathML {
-          position:absolute!important;
-          clip: rect(1px, 1px, 1px, 1px);
-          padding: 1px 0 0 0!important;
-          border: 0!important;
-          height: 1px!important;
-          width: 1px!important;
-          overflow: hidden!important;
-          display:block!important;
-      }</style></aside>
+</section>
+<section id="links" class="slide level2 center" data-background-image="assets/images/pegboard.png" data-background-opacity="0.1">
+<h2>Links</h2>
+<ul>
+<li><a href="https://matt-dray.github.io/government-toolshed/#/title-slide">These slides</a> and <a href="https://github.com/matt-dray/government-toolshed">their source</a></li>
+<li><a href="https://www.rostrum.blog/2023/06/13/panic-in-the-toolshed/">Blog</a> about this talk</li>
+<li>{a11ytables} <a href="https://co-analysis.github.io/a11ytables/">docs</a> and <a href="https://github.com/co-analysis/a11ytables">source</a></li>
+<li>The Analysis Function’s <a href="https://analysisfunction.civilservice.gov.uk/policy-store/releasing-statistics-in-spreadsheets/">spreadsheet guidance</a></li>
+</ul>
 </section>
 <section id="credits" class="slide level2 center" data-background-image="assets/images/pegboard.png" data-background-opacity="0.1">
 <h2>Credits</h2>
@@ -766,19 +919,6 @@
 <li><a href="https://fonts.google.com/specimen/Spline+Sans+Mono/about">Spline Sans Mono</a> by Eben Sorkin and Mirko Velimirović.</li>
 <li><a href="https://quarto.org/">Quarto</a> by Posit PBC.</li>
 </ul>
-<aside class="notes">
-
-<style type="text/css">
-        span.MJX_Assistive_MathML {
-          position:absolute!important;
-          clip: rect(1px, 1px, 1px, 1px);
-          padding: 1px 0 0 0!important;
-          border: 0!important;
-          height: 1px!important;
-          width: 1px!important;
-          overflow: hidden!important;
-          display:block!important;
-      }</style></aside>
 <div class="footer footer-default">
 
 </div>
@@ -994,6 +1134,44 @@
         ]
       });
     </script>
+    
+    <script>
+      // htmlwidgets need to know to resize themselves when slides are shown/hidden.
+      // Fire the "slideenter" event (handled by htmlwidgets.js) when the current
+      // slide changes (different for each slide format).
+      (function () {
+        // dispatch for htmlwidgets
+        function fireSlideEnter() {
+          const event = window.document.createEvent("Event");
+          event.initEvent("slideenter", true, true);
+          window.document.dispatchEvent(event);
+        }
+
+        function fireSlideChanged(previousSlide, currentSlide) {
+          fireSlideEnter();
+
+          // dispatch for shiny
+          if (window.jQuery) {
+            if (previousSlide) {
+              window.jQuery(previousSlide).trigger("hidden");
+            }
+            if (currentSlide) {
+              window.jQuery(currentSlide).trigger("shown");
+            }
+          }
+        }
+
+        // hookup for slidy
+        if (window.w3c_slidy) {
+          window.w3c_slidy.add_observer(function (slide_num) {
+            // slide_num starts at position 1
+            fireSlideChanged(null, w3c_slidy.slides[slide_num - 1]);
+          });
+        }
+
+      })();
+    </script>
+
     <script id="quarto-html-after-body" type="application/javascript">
     window.document.addEventListener("DOMContentLoaded", function (event) {
       const toggleBodyColorMode = (bsSheetEl) => {

@@ -10,18 +10,19 @@ title-slide-attributes:
   data-background-image: assets/images/pegboard-invert.png
   data-background-opacity: "0.1"
   data-notes: |
-    * I'm here to talk about making and sharing tools across government.
-    * I'm here because I made a thing and learnt some lessons along the way.
-    * I'm also here as penance becuase I made work for Mia by suggesting today's topic.
+    * I'm Matt Dray, here to talk about making and sharing tools across government.
     * I work at UKHSA, but this is a personal perspective of work I did while in CO.
+    * I'm here because I once made a thing and learnt some hard lessons from the process.
+    * I'm also here as penance: I made work for Mia by suggesting today's topic in a Slack conversation.
 ---
 
 ## tl;dr {.center data-background-image="assets/images/pegboard.png" data-background-opacity=0.1}
 
-Share your tools!
+Share your tools
 
 ::: notes
-* The 'too long didn't read' for this talk is very simple and you already know it.
+* The 'too long didn't read' for this talk is very simple and you already know it: if you make something helpful, then share it with others. Share it even if it isn't completely helpful yet.
+* This will help reduce duplication, improve quality and improve efficiency.
 * By 'tools' I'm thinking of software, packages, that sort of thing. But it also applies to stuff that isn't code as well.
 :::
 
@@ -32,30 +33,65 @@ Share your tools!
 * To add credibility I'll tell you a little story about a tool I created and shared, and the things I wish I'd thought harder and earlier about.
 :::
 
-## Thought process (2021) {.center data-background-image="assets/images/pegboard.png" data-background-opacity=0.1}
+## {.center-h data-background-image="assets/images/pegboard.png" data-background-opacity=0.1}
 
-1. There's new [spreadsheet guidance](https://analysisfunction.civilservice.gov.uk/policy-store/releasing-statistics-in-spreadsheets/)
-1. Might as well write some functions
-1. Other people are probably doing this
+![](assets/images/website-guidance.png){alt='Guidance from the Analysis Function called releasing statistics in spreadsheets.'}
+
+::: footer
+[https://analysisfunction.civilservice.gov.uk/policy-store/releasing-statistics-in-spreadsheets/](https://analysisfunction.civilservice.gov.uk/policy-store/releasing-statistics-in-spreadsheets/)
+:::
 
 ::: notes
-* Remember 2021? Me neither.
-* The [Government Analysis Function](https://analysisfunction.civilservice.gov.uk/) created [new (and very good) guidance](https://analysisfunction.civilservice.gov.uk/policy-store/releasing-statistics-in-spreadsheets/) for releasing statistics in spreadsheets.
-* None of the spreadsheets in my team were compliant. Colours, blank columns, multiple headers, footnotes hidden under tables. Classic non-accessible stuff. 
-* Also the production process was point-and-click before I joined.
-* Given multiple files staggered across releases, it made sense to start with some reusable R functions to apply the new guidance consistently, which later meant it was worthwhile to create a package.
-* At the time, there was [the Python package 'gptables'](https://gptables.readthedocs.io/en/latest/) from members of the Analysis Function, but it hadn't yet been updated for the new guidance (it has been now) and there was no native R solution. R users are special and they deserve the very best.
+* In 2021, which feels like 100 years ago, the [Government Analysis Function](https://analysisfunction.civilservice.gov.uk/) created [new (and very good) guidance](https://analysisfunction.civilservice.gov.uk/policy-store/releasing-statistics-in-spreadsheets/) for releasing statistics in spreadsheets.
+* My team published a number of spreadsheets on GOV.UK, but none were compliant. They used cell colour as data, had empty columns, used multiple headers and had footnotes hidden under tables. Classic non-accessible stuff. 
+* In addition, the production process was point-and-click and wasted a lot of time.
+* There was an opportunity to use the new guidance to overhaul our publications.
+:::
+
+# {.center data-background-image="assets/images/pegboard.png" data-background-opacity=0.1}
+
+```{r}
+#| eval = FALSE,
+#| echo = TRUE
+remotes::install_github("co-analysis/a11ytables")
+
+a11ytables::create_a11ytable(
+  tab_titles,
+  sheet_types,
+  sheet_titles,
+  blank_cells,
+  sources,
+  tables
+) |>
+  a11ytables::generate_workbook() |>
+  openxlsx::saveWorkbook()
+```
+
+::: footer
+[https://github.com/co-analysis/a11ytables](https://github.com/co-analysis/a11ytables)
+:::
+
+::: notes
+* I started with some reusable R functions to apply the new guidance consistently, which later meant it was worthwhile to create a package so it could be more easily maintained and shared.
+* The package is called [{a11ytables}](https://co-analysis.github.io/a11ytables) and this is an example of what it looks like in use.
+* What does the package do? You give it your tables of data, along with some metadata like worksheet titles, and it automatically creates an xlsx spreadsheet that complies with the guidance as far as possible.
+* It does the hard work for you to structure and style your spreadsheets in a compliant way, basically.
+* I should say that [the Python package 'gptables'](https://gptables.readthedocs.io/en/latest/) existed at the time, but it hadn't yet been updated for the new guidance (it has been now) and there was no native R solution.
+* R users are special, after all, and they deserve the very best.
 :::
 
 ## {.center-h data-background-image="assets/images/pegboard.png" data-background-opacity=0.1}
 
 ![](assets/images/website-a11ytables.png){alt='A screenshot of the documentation website for the R package called a11ytables. It has several sections of information about the purpose of the package, the license, the authors, and more.'}
-[co-analysis.github.io/a11ytables](https://co-analysis.github.io/a11ytables)
+
+::: footer
+[https://co-analysis.github.io/a11ytables/](https://co-analysis.github.io/a11ytables/)
+:::
 
 ::: notes
-* And so the {a11ytables} package was created. Entirely for our own use at first, but I got the feeling it would have other interested parties.
-* What does it do? You give it your tables of data, along with some metadata like worksheet titles, and it automatically creates an xlsx spreadsheet that is (mostly!) compliant with the guidance. It does the hard work for you, basically.
-* This screenshot is the documentation homepage.
+* So, having put in a little bit of effort already, and knowing that others should comply with the new guidance, it made sense to make it easy to use and to tell other people it existed.
+* First, this involved making some half-decent documentation. The screenshot here is the package's website.
+* Then I spoke to likely users, both internally (i.e. at an NHS-R webinar, at a GSS Champions quarterly meeting, to a Scottish Government R conference) and externally (i.e. a talk at EARL conference 2022, blog posts, social media).
 :::
 
 ## Success! {.center data-background-image="assets/images/pegboard.png" data-background-opacity=0.1}
@@ -65,42 +101,46 @@ Share your tools!
 * It's been improved by feedback
 
 ::: notes
-* I used it to successfully create the spreadsheets we needed to release. The lowest bar!
-* I spoke to some targeted groups that might find it useful: both internally (i.e. at an NHS-R webinar, at a GSS Champions quarterly meeting, to a Scottish Government R conference) and externally (i.e. a talk at EARL conference 2022, blog posts, social media). It's referenced now from the Analysis Function [spreadsheet guidance](https://analysisfunction.civilservice.gov.uk/policy-store/further-resources-for-releasing-statistics-in-spreadsheets/).
-* It's not perfect, but the package is now in use across a number of organisations (CO, MoJ, ONS, DfT, Scot Gov, etc)
+* I used it to successfully create the spreadsheets my team needed to release. The lowest bar!
+* The package is now in use across a number of organisations (CO, MoJ, ONS, DfT, Scot Gov, etc).
+* It's also now referenced now from the Analysis Function [spreadsheet guidance](https://analysisfunction.civilservice.gov.uk/policy-store/further-resources-for-releasing-statistics-in-spreadsheets/), so that's nice.
+* I had lots of great input and ideas from colleagues, and inevitable bug-catching, which helped improve the package.
 :::
 
 ## Panic! {.center data-background-image="assets/images/pegboard.png" data-background-opacity=0.1}
 
-* The maintainer left the org!
+* Where's the maintainer?
+* Should it move to another repo?
 * Should {a11ytables2} exist?
-* Where should tools live?
 
 ::: notes
 * Despite some success, there are some complications.
-* I wrote the package in a department that I've now left. My access to the GitHub repo is diminished. How does this impact things?
+* I wrote the package in a department that I've now left. My access to the GitHub repo is diminished and it's no longer a priority.
+* How does this look from the user perspective? Will they think it's stuck in liminal space or abandoned?
+* Should I have asked earlier to transfer it somewhere more central than my division's GitHub organisation? Where would I have transferred it to?
+* Moving a package means you have to think about awkward things like licensing, broken URLs, the burden on the new owners, etc.
 * {a11ytables} is based on the {openxlsx} package. An {openxlsx2} package is maturing and has better support for a number of features, like automatic font colouring, and should make for more readable code on the backend. So should {a11ytables} be updated? Or is this the chance to make an '{a11ytables2}'?
-* This raises a wider question of where this kind of tool should live. It was developed in one particular department on their time, so it 'belongs' to them. But now it's stuck in a liminal space. If it were to move somewhere else, we'd need to think about licensing, broken URLs, burden on new owner, etc.
+* More importantly I think it's a terrible package name, but it's too late to change it.
 :::
 
 # Reflection {.center data-background-image="assets/images/pegboard-invert.png" data-background-opacity=0.1}
 
 ::: notes
-* I could probably have thought about these things earlier. So here I am telling you to think about these things.
-* If I were to tease this out a bit, the experience boils down to three things: think sustainably, advertise and centralise.
-* I don't think they're that surprising (even if one of them is not a real word).
+* I could probably have thought about these things earlier. So here I am telling _you_ to think about these things while you can.
+* If I were to tease this out a bit, the experience boils down to three things: think sustainably, try to centralise, and make sure to advertise.
 :::
 
-## 1. Sustainabilise {.center data-background-image="assets/images/pegboard.png" data-background-opacity=0.1}
+## 1. Think sustainably {.center data-background-image="assets/images/pegboard.png" data-background-opacity=0.1}
 
 * Build modular things
 * Write good documentation
 * Plan for your loss
 
 ::: {.notes}
-* Start small and simple, then build up. 
+* First, what do I mean by 'think sustainably'?
+* Make smaller, simpler things that are easier to maintain and have a greater chance of being used more than once in multiple projects.
 * Make it easy for you and others to understand the code.
-* All of this will make it easier for others to maintain and develop the tool if you leave the project.
+* Do what you can to make it as easy as possible for other people to use and develop it if you disappear.
 :::
 
 ## 2. Centralise {.center data-background-image="assets/images/pegboard.png" data-background-opacity=0.1}
@@ -110,6 +150,7 @@ Share your tools!
 * Pool your tools
 
 ::: {.notes}
+* Second was 'centralise'.
 * Bring together your code in one place; ideally into a package structure if it makes sense. Make it into a defined 'thing' rather than 'a bunch of stuff in a folder'. You should be able to point to it as a single URL or filepath at worst.
 * Get it off your local drive and made available to your team, to your org, to the government, and beyond. 
 * Tools created on government time belong to the taxpayer. Making it open improves transparency, but also makes it much easier for others to collaborate and ask questions. (Yes, I understand that certain things are sensitive and it's not easy to do make them freely available, but try to default to openness where possible.)
@@ -123,9 +164,10 @@ Share your tools!
 * Build a community
 
 ::: notes
+* And third, 'advertise'.
 * How can anyone find your project? Talk about it in internal networks, at Coffee & Coding, etc. Expand out to external events even if you don't think there are users there; try Slack, or these Data Science meetups, or even external events. You could inspire someone else.
 * The sooner you start talking about it, the sooner you'll find out if it already exists.
-* Encourage questions and collaborators to help improve the thing.
+* Encourage questions and collaborators and build a little community to help improve the thing.
 * This is not about 'marketing', 'clout', or impressing people. It's about making people's lives easier, including yours.
 * The smart ones among you will realise that this is pretty meta: I'm advertising while I tell you to advertise.
 :::
@@ -133,8 +175,9 @@ Share your tools!
 # It's not just me {.center data-background-image="assets/images/pegboard-invert.png" data-background-opacity=0.1}
 
 ::: notes
+* Of course, this isn't new.
 * Turns out that there are government principles that relate to these ideas already.
-* These principles focus more on digital services, but we can co-opt them for tools. 
+* These principles focus more on digital services, but we can co-opt them for 'tools'. 
 :::
 
 ## [Gov Design Principles](https://www.gov.uk/guidance/government-design-principles) {.center data-background-image="assets/images/pegboard.png" data-background-opacity=0.1}
@@ -159,55 +202,81 @@ Share your tools!
 * The [Technology Code of Practice](https://www.gov.uk/guidance/the-technology-code-of-practice) echoes these sentiments.
 * [Criterion 3](https://www.gov.uk/guidance/be-open-and-use-open-source): 'Publish your code and use open source software to improve transparency, flexibility and accountability.'
 * [Criterion 8](https://www.gov.uk/guidance/share-and-reuse-technology): 'Avoid duplicating effort and unnecessary costs by collaborating across government and sharing and reusing technology, data, and services.'
-
 :::
 
 # A metaphor {.center data-background-image="assets/images/pegboard-invert.png" data-background-opacity=0.1}
 
 ::: notes
 * You'll have noticed the idea of a 'toolshed' as the theme of this session.
-* I'm going to humour Mia by spelling it out literally.
+* I'm going to humour Mia by spelling it out more literally.
 :::
 
 ## {background-image="assets/images/ashim-d-silva-Kw_zQBAChws-unsplash.jpg"}
 
 ::: notes
-* Is this the current state of things? 
+* Is this the current state of the government toolshed?
 * We know there are tools in use across government that others might be able to use or contribute to, but they're not organised.
 * Maybe some are multifaceted instruments, like the Swiss Army knife; maybe some are more blunt, like this tomahawk; maybe some are overcomplicated, like this knife that has a picture of a... knife... on it.
-* Is a nail a tool? Maybe it needs a hammer. Where can I find one?
-* You get the idea. It's a metaphor. What the heck is available and how the heck can I find what I need?
-
+* You get the idea. It's a metaphor. What the heck is available and how the heck can I find it?
 :::
 
 ## {background-image="assets/images/cesar-carlevarino-aragon-NL_DF0Klepc-unsplash.jpg"}
 
 ::: notes
-* Could this be the future state of things?
+* Could this be the future state of the government toolshed?
 * What if we could organise and arrange our tools so everyone can more easily find and use them? What would that look like for us at a government-wide level?
 * Fittingly, this image has some empty spots to be filled and also some tools that fill a spot, but don't quit fit the spot. Room to develop?
-* But maybe we need something more like a Toolstation (not sponsoring this talk) that has a catalogue that you can peruse.
-:::
-
-## tl;dr {.center data-background-image="assets/images/pegboard.png" data-background-opacity=0.1}
-
-* Share your tools!
-* Sustainabilise, centralise, advertise
-* What would a cross-gov toolshed look like?
-* [matt-dray.github.io/government-toolshed](https://matt-dray.github.io/government-toolshed)
-
-::: notes
-* Think sustainably: design your tools so that it's not a problem if you disappear.
-* Centralise: store all aspects of the project (code, documentation) in an obvious, open place that others can contribute to.
-* Advertise: tell people about the project to help uncover duplication and get them involved.
-* Think of these things when you're developing things and hopefully you won't end up panicking in the toolshed like me.
-* Thank you for coming to my therapy session.
+* But maybe we need something more like a Toolstation (not sponsoring this talk) that has a catalogue that you can peruse (other tool vendors are available).
 :::
 
 ## {.center data-background-image="assets/images/pegboard.png" data-background-opacity=0.1}
 
-::: notes
+![](assets/images/website-awesome.png){alt='A section of the README file from the Awesome List for Official Statistics Software on GitHub.'}
+
+::: footer
+[https://github.com/SNStatComp/awesome-official-statistics-software](https://github.com/SNStatComp/awesome-official-statistics-software)
 :::
+
+::: notes
+* Let me give you an example of the simplest possible format that this take: it could just be an up-to-date _list_.
+* This is an example hosted in a GitHub README. It's a list of 'awesome official statistics software.' 
+* There are many 'Awesome' lists on GitHub for all sorts of things. They're usually fairly ad hoc.
+:::
+
+## {.center data-background-image="assets/images/pegboard.png" data-background-opacity=0.1}
+
+![](assets/images/website-ctv.png){alt='An example CRAN Task View webpage, which lists R packages grouped by some specialism. This example is for official and survey statistics.'}
+
+::: footer
+[https://cran.r-project.org/web/views/OfficialStatistics.html](https://cran.r-project.org/web/views/OfficialStatistics.html)
+:::
+
+::: notes
+* Another example is the more formal 'CRAN Task View'. These are lists of R packages that are related to specific named tasks. 
+* This one is for official and survey statistics, for example.
+* Wondering out loud: do you think this is something we should do, at very least?
+:::
+
+## tl;dr {.center data-background-image="assets/images/pegboard.png" data-background-opacity=0.1}
+
+* Share your tools
+* Sustainabilise, centralise, advertise
+* Don't panic!
+
+::: notes
+* Anyway, to recap, I'm telling you to do obvious things like 'share you tools', but also to think about how you can make that easier for yourself in future.
+* And if you don't care about anyone else, then at least prevent future-you from panicking.
+* I've been Matt Dray, thank you for coming to my therapy session.
+:::
+
+## {.center data-background-image="assets/images/pegboard.png" data-background-opacity=0.1}
+
+## Links {.center data-background-image="assets/images/pegboard.png" data-background-opacity=0.1}
+
+* [These slides](https://matt-dray.github.io/government-toolshed/#/title-slide) and [their source](https://github.com/matt-dray/government-toolshed)
+* [Blog](https://www.rostrum.blog/2023/06/13/panic-in-the-toolshed/) about this talk
+* {a11ytables} [docs](https://co-analysis.github.io/a11ytables/) and [source](https://github.com/co-analysis/a11ytables)
+* The Analysis Function's [spreadsheet guidance](https://analysisfunction.civilservice.gov.uk/policy-store/releasing-statistics-in-spreadsheets/)
 
 ## Credits {.center data-background-image="assets/images/pegboard.png" data-background-opacity=0.1}
 
@@ -216,6 +285,3 @@ Share your tools!
 * [DM Serif Text](https://fonts.google.com/specimen/DM+Serif+Text/about) by Colophon Foundry.
 * [Spline Sans Mono](https://fonts.google.com/specimen/Spline+Sans+Mono/about) by Eben Sorkin and Mirko Velimirović.
 * [Quarto](https://quarto.org/) by Posit PBC.
-
-::: notes
-:::
