@@ -136,7 +136,7 @@ a11ytables::create_a11ytable(
 * Write good documentation
 * Plan for your loss
 
-::: {.notes}
+::: notes
 * First, what do I mean by 'think sustainably'?
 * Make smaller, simpler things that are easier to maintain and have a greater chance of being used more than once in multiple projects.
 * Make it easy for you and others to understand the code.
@@ -149,7 +149,7 @@ a11ytables::create_a11ytable(
 * Make it easy to find
 * Pool your tools
 
-::: {.notes}
+::: notes
 * Second was 'centralise'.
 * Bring together your code in one place; ideally into a package structure if it makes sense. Make it into a defined 'thing' rather than 'a bunch of stuff in a folder'. You should be able to point to it as a single URL or filepath at worst.
 * Get it off your local drive and made available to your team, to your org, to the government, and beyond. 
