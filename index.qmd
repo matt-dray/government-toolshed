@@ -48,7 +48,7 @@ Share your tools
 * There was an opportunity to use the new guidance to overhaul our publications.
 :::
 
-# {.center data-background-image="assets/images/pegboard.png" data-background-opacity=0.1}
+## {.center data-background-image="assets/images/pegboard.png" data-background-opacity=0.1}
 
 ```{r}
 #| eval = FALSE,
