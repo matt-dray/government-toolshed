@@ -10,9 +10,8 @@ title-slide-attributes:
   data-background-image: assets/images/pegboard-invert.png
   data-background-opacity: "0.1"
   data-notes: |
-    * I'm Matt Dray, here to talk about making and sharing tools across government.
+    * I'm Matt Dray, I'm here because I once made a thing and learnt some lessons from the process.
     * I work at UKHSA, but this is a personal perspective of work I did while in CO.
-    * I'm here because I once made a thing and learnt some hard lessons from the process.
     * I'm also here as penance: I made work for Mia by suggesting today's topic in a Slack conversation.
 ---
 
@@ -23,7 +22,7 @@ Share your tools
 ::: notes
 * The 'too long didn't read' for this talk is very simple and you already know it: if you make something helpful, then share it with others. Share it even if it isn't completely helpful yet.
 * This will help reduce duplication, improve quality and improve efficiency.
-* By 'tools' I'm thinking of software, packages, that sort of thing. But it also applies to stuff that isn't code as well.
+* By 'tools' I'm mostly thinking of software, packages, that sort of thing. But it also applies to stuff that isn't code as well.
 :::
 
 # An experience {.center data-background-image="assets/images/pegboard-invert.png" data-background-opacity=0.1}
@@ -89,7 +88,7 @@ a11ytables::create_a11ytable(
 :::
 
 ::: notes
-* So, having put in a little bit of effort already, and knowing that others should comply with the new guidance, it made sense to make it easy to use and to tell other people it existed.
+* So, having put in a little bit of effort already, and knowing that other departments needed to comply with the new guidance as well, it made sense to make the package easy to use, universally accessible and to tell other people it existed.
 * First, this involved making some half-decent documentation. The screenshot here is the package's website.
 * Then I spoke to likely users, both internally (i.e. at an NHS-R webinar, at a GSS Champions quarterly meeting, to a Scottish Government R conference) and externally (i.e. a talk at EARL conference 2022, blog posts, social media).
 :::
@@ -114,8 +113,8 @@ a11ytables::create_a11ytable(
 * Should {a11ytables2} exist?
 
 ::: notes
-* Despite some success, there are some complications.
-* I wrote the package in a department that I've now left. My access to the GitHub repo is diminished and it's no longer a priority.
+* And I'll now I'll deflate my ego. Despite some success, there are some complications.
+* I wrote the package in a department that I've now left. My access to the GitHub repo is diminished and it's no longer a priority. There are no other maintainers.
 * How does this look from the user perspective? Will they think it's stuck in liminal space or abandoned?
 * Should I have asked earlier to transfer it somewhere more central than my division's GitHub organisation? Where would I have transferred it to?
 * Moving a package means you have to think about awkward things like licensing, broken URLs, the burden on the new owners, etc.
@@ -208,7 +207,7 @@ a11ytables::create_a11ytable(
 
 ::: notes
 * You'll have noticed the idea of a 'toolshed' as the theme of this session.
-* I'm going to humour Mia by spelling it out more literally.
+* I'm going to humour Mia, who I think came up with this metaphor, by spelling it out more literally.
 :::
 
 ## {background-image="assets/images/ashim-d-silva-Kw_zQBAChws-unsplash.jpg"}
@@ -238,9 +237,9 @@ a11ytables::create_a11ytable(
 :::
 
 ::: notes
-* Let me give you an example of the simplest possible format that this take: it could just be an up-to-date _list_.
+* Let me give you an example of the simplest possible format that this take: it could just be an up-to-date, centrally managed  _list_.
 * This is an example hosted in a GitHub README. It's a list of 'awesome official statistics software.' 
-* There are many 'Awesome' lists on GitHub for all sorts of things. They're usually fairly ad hoc.
+* There are many 'Awesome' lists on GitHub for all sorts of things. They're usually fairly ad hoc. But you can immediately see what's on offer and it's status.
 :::
 
 ## {.center data-background-image="assets/images/pegboard.png" data-background-opacity=0.1}
@@ -255,16 +254,19 @@ a11ytables::create_a11ytable(
 * Another example is the more formal 'CRAN Task View'. These are lists of R packages that are related to specific named tasks. 
 * This one is for official and survey statistics, for example.
 * Wondering out loud: do you think this is something we should do, at very least?
+* I'm not saying this is the only solution. Maybe common resources should have a high-level home; maybe GitHub repos could go under one GitHub organisation? You might hear a bit about that from the NHS-R talk in a minute.
 :::
 
 ## tl;dr {.center data-background-image="assets/images/pegboard.png" data-background-opacity=0.1}
 
-* Share your tools
-* Sustainabilise, centralise, advertise
-* Don't panic!
+1. Share your tools
+1. Sustainabilise, centralise, advertise
+1. How best can we surface and share tools?
+1. Don't panic!
 
 ::: notes
 * Anyway, to recap, I'm telling you to do obvious things like 'share you tools', but also to think about how you can make that easier for yourself in future.
+* A question for the audience is to think about ways we can collectively share what we've made.
 * And if you don't care about anyone else, then at least prevent future-you from panicking.
 * I've been Matt Dray, thank you for coming to my therapy session.
 :::
